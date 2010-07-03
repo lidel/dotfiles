@@ -1,0 +1,50 @@
+# Simple prompt for ZSH
+# by Marcin Rataj (http://lidel.org)
+# Updates: http://github.com/lidel/dotfiles/
+# License: public domain
+#
+# vim: ts=4 et sw=4
+
+setprompt () {
+
+setopt prompt_subst
+
+# Check if we can use colors
+autoload colors zsh/terminfo
+if [[ "$terminfo[colors]" -ge 8 ]]; then
+    colors
+fi
+
+# I want to see hostname unless I am on my workstation (dybuk)
+if [[ $HOST != 'dybuk' ]]; then
+    PR_HOST=$HOST
+fi
+
+# Decide if we need to set titlebar text.
+case $TERM in
+   xterm*)
+        PR_TITLEBAR=$'%{\e]0;%(!.[ROOT] .)%n@%m:%~ \a%}'
+    ;;
+    rxvt*)
+        PR_TITLEBAR=$'%{\e]2;%(!.[ROOT] .)%n@%m:%~ \a%}'
+    ;;
+    screen)
+        PR_TITLEBAR=$'%{\e_screen \005 (\005t) | %(!.[ROOT] .)%n@%m:%~ \e\\%}'
+    ;;
+    *)
+        PR_TITLEBAR=''
+    ;;
+esac
+
+eval C_BLACK='%{$fg[black]%}'
+eval C_CYAN='%{$fg[cyan]%}'
+eval CB_BLACK='%{$terminfo[bold]$fg[black]%}'
+eval CB_RED='%{$terminfo[bold]$fg[red]%}'
+eval C_NIL="%{$reset_color%}"
+
+PROMPT='${(e)PR_TITLEBAR}%(!.%s${CB_RED}root${C_NIL}%s.)$CB_BLACK$PR_HOST>$C_NIL '
+RPS1='%(?..$CB_RED%?$C_NIL) $C_CYAN%20<...<%~$C_NIL'
+PS2='%_$C_BLACK>$C_NIL '
+
+}
+

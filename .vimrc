@@ -1,9 +1,11 @@
-"   .vimrc (by Marcin Rataj -- http://lidel.org) {
+"   .vimrc {
+"   by Marcin Rataj (http://lidel.org)
 "
 "   Compiled from manual and external sources over last decade.
 "   Feel free to use it as a reference or base of your own .vimrc.
 "
 "   License: public domain
+"   Updates: http://github.com/lidel/dotfiles/
 "
 "   vim: set foldenable foldmarker={,} foldlevel=0
 " }
