@@ -1,0 +1,44 @@
+# .xbindkeysrc
+# by Marcin Rataj (http://lidel.org)
+# Updates: http://github.com/lidel/dotfiles/
+# License: public domain
+# (I like xbindkeys because it is DE/WM- agnostic)
+#
+# vim: ts=4 et sw=4
+
+# terminal
+"urxvtc-wrapper.sh"
+     Alt + Alt_L
+"urxvtc-wrapper.sh"
+     Alt + grave
+
+# volume
+"pa-volume-ctl.sh down"
+    XF86AudioLowerVolume
+"pa-volume-ctl.sh up"
+    XF86AudioRaiseVolume
+
+# file manager
+"thunar"
+    Mod4 + f
+
+# simple screen locker
+"sh -c 'sleep 1;xset dpms force off;xtrlock'"
+    XF86Launch1
+
+# backlight
+"vaio-backlight.sh up"
+    XF86MonBrightnessUp
+"vaio-backlight.sh down"
+    XF86MonBrightnessDown
+
+# mpd
+"mpc prev"
+    XF86AudioPrev
+"mpc toggle"
+    XF86AudioPlay
+"mpc stop"
+    XF86AudioStop
+"mpc next"
+    XF86AudioNext
+
