@@ -1,0 +1,19 @@
+Config { font = "xft:Envy Code R:size=8"
+       , bgColor = "#000000"
+       , fgColor = "#808080"
+       , position = Static { xpos = 0 , ypos = -2, width = 1520, height = 18 }
+       , lowerOnStart = True
+       , commands = [ Run Cpu ["-t","<total>","-L","30","-H","80","-n","#04797B","-h","#A36666","-l","#808080"] 20
+                    , Run Memory ["-t","<usedratio>%","-L","50","-H","75","-n","#04797B","-h","#A36666","-l","#808080"] 20
+                    , Run Date "%H:%M:%S" "date" 10
+                    , Run Thermal "TZ00" ["-t","<temp>"] 100
+                    , Run CpuFreq ["-t","<cpu0> <cpu1>","-L","0","-l","lightblue"] 10
+                    , Run MPD ["-t", "<artist> - <title>", "--", "-P", "play", "-Z", "pause", "-S", "stop"] 10
+                    , Run PipeReader ".vol" "volume"
+                    , Run Com "cut -d' ' -f 1-3 /proc/loadavg" [] "load" 50
+                    , Run StdinReader
+                    ]
+       , sepChar = "%"
+       , alignSep = "}{"
+       , template = "%StdinReader% }{ <fc=#555555>%mpd%</fc> <fc=#404040>:</fc> %cpufreq% <fc=#404040>@</fc> %cpu% <fc=#404040>:</fc> %TZ00%<fc=#404040>°C :</fc> %memory% <fc=#404040>:</fc> %volume% <fc=#404040>♫ :</fc> %load% <fc=#404040>:</fc> %date% "
+       }
