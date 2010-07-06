@@ -1,0 +1,45 @@
+# .conkyrc
+# by Marcin Rataj (http://lidel.org)
+# Updates: http://github.com/lidel/dotfiles/
+# License: public domain
+#
+# vim: ts=4 et sw=4
+
+alignment               bottom_right
+background              yes
+cpu_avg_samples         2
+default_color           #AAAAAA
+default_outline_color   #CCCCCC
+default_shade_color     white
+draw_borders            no
+draw_graph_borders      no
+draw_outline            no
+draw_shades             no
+use_xft                 yes
+xftfont                 Envy Code R:size=8
+gap_x                   5
+gap_y                   2
+minimum_size            1590 8
+net_avg_samples         3
+no_buffers              yes
+double_buffer           yes
+out_to_console          no
+out_to_stderr           no
+extra_newline           no
+own_window              no
+stippled_borders        0
+update_interval         1.0
+uppercase               no
+use_spacer              left
+show_graph_scale        no
+show_graph_range        no
+
+TEXT
+
+$alignr${color #606060}$diskio
+$alignr${color #303068}${upspeed wlan0}
+$alignr${color #683030}${downspeed wlan0}
+
+${diskiograph 32,590 222222 404040}${upspeedgraph wlan0 32,400 222222 303068}${downspeedgraph wlan0 32,600 222222 683030}
+${voffset -24}${color #AAAAAA}♫ $mpd_artist - $mpd_title
+
