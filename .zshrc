@@ -129,7 +129,8 @@ alias -g T='tail'
 zsh-updaterc () {
     ping -q -c1 github.com && \
     cp ~/.zshrc ~/.zshrc.old && \
-    wget http://github.com/lidel/dotfiles/raw/master/.zshrc -O ~/.zshrc
+    wget http://github.com/lidel/dotfiles/raw/master/.zshrc -O ~/.zshrc && \
+    wget http://github.com/lidel/dotfiles/raw/master/.zshprompt -O ~/.zshprompt
 }
 
 # compressed manpages etc
