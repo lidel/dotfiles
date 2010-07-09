@@ -26,11 +26,11 @@ notify-send -u low -t 500 -c 'transfer' "Opening" "$URL" &
 
 ## firefox (left as a reference)
 # try xremote first
-#firefox -new-tab "$URL" && exit 0
-#firefox -remote "openurl($URL,new-tab)" && exit 0
+firefox -new-tab "$URL" && exit 0
+firefox -remote "openurl($URL,new-tab)" && exit 0
 # if xremote failed, then launch the browser
-#exec firefox "$URL"
+exec firefox "$URL"
 
 ## chromium
-exec chromium "$URL"
+#exec chromium "$URL"
 

@@ -121,6 +121,17 @@ alias -g M='more'
 alias -g H='head'
 alias -g T='tail'
 
+
+
+## UTILS
+
+# update
+zsh-updaterc () {
+    ping -q -c1 github.com && \
+    cp ~/.zshrc ~/.zshrc.old && \
+    wget http://github.com/lidel/dotfiles/raw/master/.zshrc -O ~/.zshrc
+}
+
 # compressed manpages etc
 bzless () { less -f <(bzcat $*) }
 zless () { less -f <(zcat $*) }
