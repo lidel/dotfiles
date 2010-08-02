@@ -22,6 +22,10 @@
 "thunar"
     Mod4 + f
 
+# raise psi
+"psi --remote"
+    XF86AudioMedia
+
 # simple screen locker
 "sh -c 'sleep 1;xset dpms force off;xtrlock'"
     XF86Launch1

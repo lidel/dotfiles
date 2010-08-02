@@ -97,6 +97,7 @@ alias jpg2greyscale="mogrify -contrast -contrast dither -colors 256 -colorspace 
 alias r1600="mogrify -resize 1600x1280 -unsharp 1x1+0.3 -quality 90"
 alias lower="tr \"[:upper:]\" \"[:lower:]\""
 alias sping="ping -i .002 -s 1472"
+alias whatismyip="wget -O- -q whatismyip.org"
 function calc () { awk "BEGIN { print $@ }" } # commandline calculator ;-)
 
 # handy ones

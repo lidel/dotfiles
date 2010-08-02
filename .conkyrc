@@ -42,4 +42,3 @@ $alignr${color #683030}${downspeed wlan0}
 
 ${diskiograph 32,590 222222 404040}${upspeedgraph wlan0 32,400 222222 303068}${downspeedgraph wlan0 32,600 222222 683030}
 ${voffset -24}${color #AAAAAA}♫ $mpd_artist - $mpd_title
-
