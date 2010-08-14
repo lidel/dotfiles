@@ -147,6 +147,8 @@ saydone () {
     fi
 }
 
+# vim as default editor (remote shells' crontab -e etc)
+export EDITOR=vim
 # vim as a man-page reader
 # put in your ~/.vimrc :
 # autocmd FileType man setlocal ro nonumber nolist fdm=indent fdn=2 sw=4 foldlevel=2 | nmap q :quit<CR>
