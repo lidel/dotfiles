@@ -118,7 +118,7 @@ myAdditionalManageHook = composeOne $
                      , "Intensity_CClient", "Gnome-mplayer", "Gimp-2.6" ]
       centerFloatC = [ "Gcolor2", "Sonata", "Galculator", "Pinentry", "Qtconfig"
                      , "Switch2", "Lxappearance", "Geeqie", "Wicd-client.py"
-                     , "Xarchiver", ".", "Gqview", "Pystopwatch" ]
+                     , "Xarchiver", ".", "Gqview", "Pystopwatch", "Blueman-manager" ]
       ignoreC = [ "Do", "trayer" ]
       floatFF = [ "DTA", "Manager", "Extension", "Download", "Dialog", "Browser", "Toplevel" ]
 
