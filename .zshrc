@@ -110,7 +110,9 @@ alias lsa='ls -F --color=auto --group-directories-first -ld .*' # list only file
 alias l=ls
 alias d='dirs -v'
 alias c="cd ~ ; clear"
+#m () { xset s off ; ionice -c2 -n0 mplayer "$@" ; xset s on }
 alias m="ionice -c2 -n0 mplayer"
+
 alias e="emerge"
 yt () { mplayer `youtube-dl -g -b "$@"` } # youtube player ( net-misc/youtube-dl and mplayer)
 
