@@ -23,12 +23,14 @@
     Mod4 + f
 
 # raise psi
-"psi --remote"
+"xtrlock & /home/lidel/cl/bin/vaio-s2ram.sh"
     XF86AudioMedia
 
 # simple screen locker
-"sh -c 'sleep 1;xset dpms force off;xtrlock'"
+"sh -c 'mpc disable 2;sleep 1;xset dpms force off;xtrlock;mpc enable 2'"
     XF86Launch1
+"/home/lidel/bin/scrot"
+    Mod4 + Print
 
 # backlight
 "vaio-backlight.sh up"
