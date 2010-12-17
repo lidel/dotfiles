@@ -5,6 +5,10 @@
 #
 # vim: ts=4 et sw=4
 
+
+
+
+
 bindkey -e
 setopt correct
 setopt nohup
@@ -115,6 +119,7 @@ alias m="ionice -c2 -n0 mplayer"
 
 alias e="emerge"
 yt () { mplayer `youtube-dl -g -b "$@"` } # youtube player ( net-misc/youtube-dl and mplayer)
+t () { date ; time $@ ; date } # timing commands
 
 # global aliases -- These do not have to be
 # at the beginning of the command line.
