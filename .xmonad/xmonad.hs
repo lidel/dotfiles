@@ -107,6 +107,7 @@ myAdditionalManageHook = composeOne $
     -- auto shift
     [ className =? c         -?> doShift t
       | (c, t) <- [ ("Firefox", "web")
+                  , ("Minefield", "web")
                   , ("VirtualBox", "7")
                   , ("Eclipse", "5")
                   ]
