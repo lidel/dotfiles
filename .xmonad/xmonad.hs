@@ -133,7 +133,7 @@ button8     =  8 :: Button
 button9     =  9 :: Button
 
 ------------------------------------------------------------------------
-myTrayer = "killall trayer ; exec trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --width 5 --transparent true --alpha 0 --tint 0x000000 --height 16"
+myTrayer = "killall trayer ; exec trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --width 5 --transparent true --alpha 0 --tint 0x000000 --height 17"
 ------------------------------------------------------------------------
 data LibNotifyUrgencyHook = LibNotifyUrgencyHook deriving (Read, Show)
 -- simple notify when window requires attention
@@ -180,10 +180,10 @@ main = do
         startupHook        = setWMName "LG3D" -- fix for all apps that get american psycho with tilled WM
     }
                  `additionalKeys`
-                 [ ((myModMask,xK_Left),              moveTo Prev NonEmptyWS)   -- prev used workspace
-                 , ((myModMask.|.shiftMask,xK_Left),  shiftTo Prev NonEmptyWS)  -- prev used workspace
-                 , ((myModMask,xK_Right),             moveTo Next NonEmptyWS)   -- next used workspace
-                 , ((myModMask.|.shiftMask,xK_Right), shiftTo Next NonEmptyWS)  -- next used workspace
+                 [ ((myModMask,xK_Left),              moveTo Prev HiddenNonEmptyWS)   -- prev used workspace
+                 , ((myModMask.|.shiftMask,xK_Left),  shiftTo Prev HiddenNonEmptyWS)  -- prev used workspace
+                 , ((myModMask,xK_Right),             moveTo Next HiddenNonEmptyWS)   -- next used workspace
+                 , ((myModMask.|.shiftMask,xK_Right), shiftTo Next HiddenNonEmptyWS)  -- next used workspace
                  , ((myModMask,xK_0),                 moveTo Next EmptyWS)      -- find a free workspace
                  , ((0,0x1008ff1b),                   moveTo Next EmptyWS)      -- XF86Search - find a free workspace
                  , ((myModMask.|.shiftMask,xK_0),     shiftTo Next EmptyWS)     -- move to a free workspace
@@ -194,7 +194,7 @@ main = do
                  `additionalMouseBindings`
                  [ ((myModMask, button3), (\w -> focus w >> Flex.mouseResizeWindow w)) -- pretty resize
                  , ((myModMask, button1), (\w -> focus w >> mouseMoveWindow w)) -- fix bug with master (http://code.google.com/p/xmonad/issues/detail?id=241)
-                 , ((0, button8), (\w -> moveTo Prev NonEmptyWS)) -- my mouse has 2 arrows under thumb
-                 , ((0, button9), (\w -> moveTo Next NonEmptyWS)) -- i use them for 'next/prev active workspace'
+                 , ((0, button8), (\w -> moveTo Prev HiddenNonEmptyWS)) -- my mouse has 2 arrows under thumb
+                 , ((0, button9), (\w -> moveTo Next HiddenNonEmptyWS)) -- i use them for 'next/prev active workspace'
                  ]
 
