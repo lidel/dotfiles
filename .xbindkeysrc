@@ -8,8 +8,6 @@
 
 # terminal
 "urxvtc-wrapper.sh"
-     Alt + Alt_L
-"urxvtc-wrapper.sh"
      Alt + grave
 
 # volume
@@ -22,21 +20,17 @@
 "thunar"
     Mod4 + f
 
-# raise psi
-"xtrlock & /home/lidel/cl/bin/vaio-s2ram.sh"
-    XF86AudioMedia
-
-# simple screen locker
-"sh -c 'mpc disable 2;sleep 1;xset dpms force off;xtrlock;mpc enable 2'"
-    XF86Launch1
+# scrot with auto-optipng
 "/home/lidel/bin/scrot"
     Mod4 + Print
 
-# backlight
-"vaio-backlight.sh up"
-    XF86MonBrightnessUp
-"vaio-backlight.sh down"
-    XF86MonBrightnessDown
+
+# Notebook keyboard
+# =================
+
+# simple screen lock
+"mpc disable 2 ; mpc stop ; sleep 1 ; xset dpms force off ; xtrlock ; mpc enable 2"
+    XF86Launch1
 
 # mpd
 "mpc prev"
@@ -48,3 +42,33 @@
 "mpc next"
     XF86AudioNext
 
+# notebook backlight
+"vaio-backlight.sh up"
+    XF86MonBrightnessUp
+"vaio-backlight.sh down"
+    XF86MonBrightnessDown
+
+"xtrlock & /home/lidel/cl/bin/vaio-s2ram.sh"
+    Mod4 + XF86AudioMedia
+
+
+# USB keyboard
+# ============
+
+# simple screen lock
+"mpc disable 2 ; mpc stop ; sleep 1 ; xset dpms force off ; xtrlock ; mpc enable 2"
+    XF86Sleep
+
+# suspend 2 ram
+"xtrlock & /home/lidel/cl/bin/vaio-s2ram.sh"
+    Mod4 + XF86Sleep
+
+# mpd
+"mpc prev"
+    KP_Left
+"mpc toggle"
+    KP_Begin
+"mpc stop"
+    KP_Down
+"mpc next"
+    KP_Right
