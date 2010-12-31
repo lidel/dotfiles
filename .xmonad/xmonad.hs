@@ -133,7 +133,7 @@ button8     =  8 :: Button
 button9     =  9 :: Button
 
 ------------------------------------------------------------------------
-myTrayer = "killall trayer ; exec trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --width 5 --transparent true --alpha 0 --tint 0x000000 --height 17"
+myTrayer = "killall trayer ; exec trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --width 5 --transparent true --alpha 0 --tint 0x000000 --heighttype pixel --height 17 --distance 0"
 ------------------------------------------------------------------------
 data LibNotifyUrgencyHook = LibNotifyUrgencyHook deriving (Read, Show)
 -- simple notify when window requires attention
