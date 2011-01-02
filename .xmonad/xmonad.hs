@@ -27,7 +27,6 @@ import qualified XMonad.Actions.FlexibleResize as Flex
 import XMonad.Hooks.EwmhDesktops
 import XMonad.Hooks.SetWMName
 import XMonad.Hooks.ManageHelpers
--- import XMonad.Actions.CopyWindow
 
 
 import XMonad.Util.Themes
@@ -59,26 +58,40 @@ myModMask       = mod4Mask
 myNumlockMask   = 0
 myWorkspaces    = ["main","web"] ++ map show [3..8] ++ ["dl"]
 
-myNormalBorderColor  = "#111111"
-myFocusedBorderColor = "#333333"
--- myFocusedBorderColor = "#303030"
+myFontName = "-*-terminus-medium-r-*-*-12-*-*-*-*-*-iso10646-*"
+
+myInactiveBorderColor   = "#111111"
+myActiveBorderColor     = "#333333"
+
+myInactiveTextColor     = "#a0a0a0"
+myInactiveColor         = "#000000"
+
+myActiveTextColor       = "#29B5B5"
+myActiveColor           = "#000000"
+
+myUrgentTextColor       = "#000000"
+myUrgentColor           = "#BF2020"
+
+myDecoTextColor         = "#444444"
+myDecoChar              = " : "
+myEmptyColor            = ""
 
 ------------------------------------------------------------------------
 lidelDarkTheme :: Theme
-lidelDarkTheme = defaultTheme { inactiveBorderColor = "#101010"
-                              , inactiveColor = "#101010"
-                              , inactiveTextColor = "#808080"
-                              , activeBorderColor = "#222"
-                              , activeColor = "#222"
-                              , activeTextColor = "#aaa"
-                              , fontName = "-*-terminus-medium-r-*-*-12-*-*-*-*-*-iso10646-*"
-                              , decoHeight = 10
-                              , urgentColor = "#A36666"
-                              , urgentTextColor = "#000"
+lidelDarkTheme = defaultTheme { inactiveBorderColor = myInactiveBorderColor
+                              , inactiveColor       = myInactiveColor
+                              , inactiveTextColor   = myInactiveTextColor
+                              , activeBorderColor   = myActiveBorderColor
+                              , activeColor         = myActiveBorderColor
+                              , activeTextColor     = myInactiveTextColor
+                              , fontName            = myFontName
+                              , decoHeight          = 10
+                              , urgentColor         = myUrgentColor
+                              , urgentTextColor     = myUrgentTextColor
                               }
 ------------------------------------------------------------------------
 
-myLayout = maximize (tiled ||| Mirror tiled ||| tabbed shrinkText lidelDarkTheme )
+myLayout = maximize (tiled ||| Mirror tiled ||| tabbedBottom shrinkText lidelDarkTheme )
   where
      -- default tiling algorithm partitions the screen into two panes
      tiled   = ResizableTall nmaster delta ratio []
@@ -133,7 +146,8 @@ button8     =  8 :: Button
 button9     =  9 :: Button
 
 ------------------------------------------------------------------------
-myTrayer = "killall trayer ; exec trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --width 5 --transparent true --alpha 0 --tint 0x000000 --heighttype pixel --height 17 --distance 0"
+myTrayer = "killall trayer ; exec trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --widthtype request --transparent true --alpha 0 --tint 0x0000000 --heighttype pixel --height 16 --distance 0"
+myDmenu  = "exe=`dmenu_path | dmenu -nb '" ++ myInactiveColor ++ "' -nf '" ++ myInactiveTextColor ++ "' -sb '" ++ myActiveColor  ++ "' -sf '" ++ myActiveTextColor ++ "' -fn '" ++ myFontName ++ "'` && eval \"exec $exe\""
 ------------------------------------------------------------------------
 data LibNotifyUrgencyHook = LibNotifyUrgencyHook deriving (Read, Show)
 -- simple notify when window requires attention
@@ -143,7 +157,8 @@ instance UrgencyHook LibNotifyUrgencyHook where
         ws <- gets windowset
         whenJust (W.findTag w ws) (flash name)
         where flash name index = spawn "notify-send URGENCY"
-        --(show name ++ " requests your attention on workspace " ++ index)
+--      where flash name index =
+--                safeSpawn "notify-send" "" --(show name ++ " requests your attention on workspace " ++ index)
 ------------------------------------------------------------------------
 main = do
         xmproc <- spawnPipe "xmobar"
@@ -157,24 +172,24 @@ main = do
         modMask            = myModMask,
         numlockMask        = myNumlockMask,
         workspaces         = myWorkspaces,
-        normalBorderColor  = myNormalBorderColor,
-        focusedBorderColor = myFocusedBorderColor,
+        normalBorderColor  = myInactiveBorderColor,
+        focusedBorderColor = myActiveBorderColor,
 
       -- hooks, layouts
         layoutHook         = avoidStruts $ smartBorders $ myLayout,
         manageHook         = myManageHook,
         logHook            = ewmhDesktopsLogHook >> (
                              dynamicLogWithPP $ defaultPP {
-                                                ppTitle     = xmobarColor "#a0a0a0" "" . shorten 100,
-                                                ppCurrent   = xmobarColor "#29B5B5" "", -- . wrap "" "",
-                                                ppUrgent    = xmobarColor "#000000" "#BF2020" . xmobarStrip,
-                                                ppSep       = xmobarColor "#404040" "" " : ",
+                                                ppTitle     = xmobarColor myInactiveTextColor myEmptyColor . shorten 100,
+                                                ppCurrent   = xmobarColor myActiveTextColor myEmptyColor, -- . wrap "" "",
+                                                ppUrgent    = xmobarColor myUrgentTextColor myUrgentColor . xmobarStrip,
+                                                ppSep       = xmobarColor myDecoTextColor myEmptyColor myDecoChar,
                                                 ppOutput    = hPutStrLn xmproc,
-                                                ppLayout    = xmobarColor "#606060" "" .
+                                                ppLayout    = xmobarColor myDecoTextColor myEmptyColor .
                                                       (\ x -> case x of
                                                           "Maximize ResizableTall"            -> "[]="
                                                           "Maximize Mirror ResizableTall"     -> "TTT"
-                                                          "Maximize Tabbed Simplest"          -> "Tab"
+                                                          "Maximize Tabbed Bottom Simplest"   -> "Tab"
                                                           _                         -> pad x)
                                                 }) >> updatePointer Nearest,
         startupHook        = setWMName "LG3D" -- fix for all apps that get american psycho with tilled WM
@@ -190,6 +205,8 @@ main = do
                  , ((myModMask,xK_m), withFocused (sendMessage . maximizeRestore))
                  , ((myModMask, xK_z), sendMessage MirrorShrink)
                  , ((myModMask, xK_a), sendMessage MirrorExpand)
+                 -- third parties
+                 , ((myModMask, xK_p), spawn myDmenu) -- themed dmenu
                  ]
                  `additionalMouseBindings`
                  [ ((myModMask, button3), (\w -> focus w >> Flex.mouseResizeWindow w)) -- pretty resize
