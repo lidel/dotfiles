@@ -17,7 +17,7 @@ XTerm*colorBDMode:  true
 XTerm*colorULMode:  true
 
 ! font
-urxvt*font:         xft:Envy Code R:size=8
+#urxvt*font:        xft:Envy Code R:size=9
 #urxvt*font:        xft:Droid Sans Mono:size=8
 #URxvt*font:        xft:Bitstream Vera Sans Mono:pixelsize=11
 #URxvt*font:        xft:Inconsolata:pixelsize=12
@@ -25,8 +25,9 @@ urxvt*font:         xft:Envy Code R:size=8
 #URxvt*boldFont:    xft:Monospace:pixelsize=13:antialias=true:bold:hinting=true
 #urxvt*font:        -*-terminus-medium-r-*-*-14-*-*-*-*-*-iso10646-*
 #urxvt*boldFont:    -*-terminus-bold-r-*-*-14-*-*-*-*-*-iso10646-*
-! working bold:
-#urxvt*font:        -*-terminus-medium-r-*-*-12-*-*-*-*-*-iso10646-*
+urxvt*font:        -*-terminus-medium-r-*-*-12-*-*-*-*-*-iso10646-*
+urxvt*boldFont:    -*-terminus-bold-r-*-*-12-*-*-*-*-*-iso10646-*
+! xft
 Xft.dpi:            96
 Xft.antialias:      true
 Xft.rgba:           rgb
