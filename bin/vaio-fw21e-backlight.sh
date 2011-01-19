@@ -6,6 +6,8 @@
 #
 # Wrapper over low-level tool (vaio-backlight-raw.sh) taken
 # from https://bugzilla.kernel.org/show_bug.cgi?id=11682#c32
+#
+# (This script is now deprecated -- see: vaio-fw21e-backlight2.sh)
 
 rhddump="sudo `which rhd_dump`"
 
