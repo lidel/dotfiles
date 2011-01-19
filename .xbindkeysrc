@@ -43,12 +43,12 @@
     XF86AudioNext
 
 # notebook backlight
-"sudo vaio-fw21e-backlight2.sh up"
+"sudo /home/lidel/bin/vaio-fw21e-backlight2.sh up"
     XF86MonBrightnessUp
-"sudo vaio-fw21e-backlight2.sh down"
+"sudo /home/lidel/bin/vaio-fw21e-backlight2.sh down"
     XF86MonBrightnessDown
 
-"xtrlock & /home/lidel/cl/bin/vaio-s2ram.sh"
+"xtrlock & /home/lidel/bin/vaio-s2ram.sh"
     Mod4 + XF86AudioMedia
 
 
@@ -59,7 +59,7 @@
 "true"
     XF86HomePage
 
-# simple screen lock + quick and ugly keyboard fix
+# simple screen lock
 "mpc disable 2 & mpc stop & xscreensaver-command -lock ; mpc enable 2"
     XF86Sleep
 
