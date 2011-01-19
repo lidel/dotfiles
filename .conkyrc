@@ -8,18 +8,19 @@
 alignment               bottom_right
 background              yes
 cpu_avg_samples         2
-default_color           #AAAAAA
-default_outline_color   #CCCCCC
+default_color           black
+default_outline_color   grey36
 default_shade_color     white
 draw_borders            no
 draw_graph_borders      no
-draw_outline            no
+draw_outline            yes
 draw_shades             no
-use_xft                 yes
-xftfont                 Envy Code R:size=8
-gap_x                   5
-gap_y                   2
-minimum_size            1590 8
+use_xft                 no
+#xftfont                 Envy Code R:size=10
+font                    -*-terminus-medium-r-*-*-14-*-*-*-*-*-iso10646-*
+gap_x                   0
+gap_y                   -8
+minimum_size            1910 8
 net_avg_samples         3
 no_buffers              yes
 double_buffer           yes
@@ -36,9 +37,8 @@ show_graph_range        no
 
 TEXT
 
-$alignr${color #606060}$diskio
-$alignr${color #303068}${upspeed wlan0}
-$alignr${color #683030}${downspeed wlan0}
+$alignr${color #222222}$diskio 
+$alignr${color #202048}${upspeed wlan0} 
+$alignr${color #482020}${downspeed wlan0} 
 
-${diskiograph 32,590 222222 404040}${upspeedgraph wlan0 32,400 222222 303068}${downspeedgraph wlan0 32,600 222222 683030}
-${voffset -24}${color #AAAAAA}♫ $mpd_artist - $mpd_title
+${diskiograph 32,520 222222 404040}${upspeedgraph wlan0 32,600 222222 303068}${downspeedgraph wlan0 32,800 222222 683030}
