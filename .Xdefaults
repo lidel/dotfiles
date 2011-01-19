@@ -6,33 +6,45 @@
 # vim: ts=4 et sw=4
 
 Xcursor.theme:      Neutral_Plus
-
-! urxvt is my terminal of choice (http://goo.gl/reh0)
-urxvt*foreground:   #d5d5d5
-urxvt*cursorColor:  #c0c0c0
-urxvt*background:   #050505
-
-XTerm*boldColors:   true
-XTerm*colorBDMode:  true
-XTerm*colorULMode:  true
-
-! font
-#urxvt*font:        xft:Envy Code R:size=9
-#urxvt*font:        xft:Droid Sans Mono:size=8
-#URxvt*font:        xft:Bitstream Vera Sans Mono:pixelsize=11
-#URxvt*font:        xft:Inconsolata:pixelsize=12
-#Urxvt*font:        xft:Monospace:pixelsize=13:antialias=true:hinting=true
-#URxvt*boldFont:    xft:Monospace:pixelsize=13:antialias=true:bold:hinting=true
-#urxvt*font:        -*-terminus-medium-r-*-*-14-*-*-*-*-*-iso10646-*
-#urxvt*boldFont:    -*-terminus-bold-r-*-*-14-*-*-*-*-*-iso10646-*
-urxvt*font:        -*-terminus-medium-r-*-*-12-*-*-*-*-*-iso10646-*
-urxvt*boldFont:    -*-terminus-bold-r-*-*-12-*-*-*-*-*-iso10646-*
 ! xft
 Xft.dpi:            96
 Xft.antialias:      true
 Xft.rgba:           rgb
 Xft.hinting:        true
 Xft.hintstyle:      hintfull
+
+
+! urxvt is my terminal of choice (http://goo.gl/reh0)
+urxvt*foreground:   #dCdCdC
+urxvt*cursorColor:  #c0c0c0
+urxvt*background:   #1C1C1C
+
+XTerm*boldColors:   true
+XTerm*colorBDMode:  true
+XTerm*colorULMode:  true
+
+! font
+urxvt*font:        xft:Envy Code R:size=10
+#urxvt*font:        xft:Anonymous Pro:size=10
+#URxvt*font:        xft:Bitstream Vera Sans Mono:pixelsize=11
+#URxvt*font:        xft:Inconsolata:pixelsize=10
+#Urxvt*font:        xft:Monospace:pixelsize=13:antialias=true:hinting=true
+#URxvt*boldFont:    xft:Monospace:pixelsize=13:antialias=true:bold:hinting=true
+#urxvt*font:        -*-terminus-medium-r-*-*-14-*-*-*-*-*-iso10646-*
+#urxvt*boldFont:    -*-terminus-bold-r-*-*-14-*-*-*-*-*-iso10646-*
+#urxvt*font:        -*-terminus-medium-r-*-*-12-*-*-*-*-*-iso10646-*
+#urxvt*boldFont:    -*-terminus-bold-r-*-*-12-*-*-*-*-*-iso10646-*
+#urxv*font: -*-fixed-medium-r-*-*-14-*-*-*-*-*-*-*
+#URxvt*font: xft:Bitstream Vera Sans Mono:pixelsize=12
+
+! cycle font sizes with ctrl+alt+1-6
+URxvt.keysym.C-1: command:\033]710;xft:Envy Code R:size=10\007
+URxvt.keysym.C-2: command:\033]710;xft:Envy Code R:size=12\007
+URxvt.keysym.C-3: command:\033]710;xft:Envy Code R:size=14\007
+URxvt.keysym.C-4: command:\033]710;xft:Envy Code R:size=20\007
+URxvt.keysym.C-5: command:\033]710;xft:Envy Code R:size=26\007
+URxvt.keysym.C-6: command:\033]710;xft:Envy Code R:size=36\007
+
 
 ! transparency policy
 urxvt.inheritPixmap:    true
@@ -75,4 +87,29 @@ urxvt*color12: rgb:7272/9f9f/cfcf
 urxvt*color13: rgb:adad/7f7f/a8a8
 urxvt*color14: rgb:3434/e2e2/e2e2
 urxvt*color15: rgb:eeee/eeee/ecec
+urxvt*highlightColor:#404040
+
+! xscreensaver ---------------------------------------------------------------
+! https://wiki.archlinux.org/index.php/Xdefaults#xscreensaver_theming
+
+!font settings
+!general dialog box (affects main hostname, username, password text)
+xscreensaver.Dialog.foreground:         #666666
+xscreensaver.Dialog.background:         #000000
+xscreensaver.Dialog.topShadowColor:     #111111
+xscreensaver.Dialog.bottomShadowColor:  #111111
+xscreensaver.Dialog.Button.foreground:  #666666
+xscreensaver.Dialog.Button.background:  #ffffff
+!username/password input box and date text colour
+xscreensaver.Dialog.text.foreground:    #666666
+xscreensaver.Dialog.text.background:    #ffffff
+xscreensaver.Dialog.internalBorderWidth:24
+xscreensaver.Dialog.borderWidth:        20
+xscreensaver.Dialog.shadowThickness:    2
+!timeout bar (background is actually determined by Dialog.text.background)
+xscreensaver.passwd.thermometer.foreground:  #0000ff
+xscreensaver.passwd.thermometer.background:  #666666
+xscreensaver.passwd.thermometer.width:       8
+!datestamp format--see the strftime(3) manual page for details
+xscreensaver.dateFormat:    %I:%M%P %a %b %d, %Y
 
