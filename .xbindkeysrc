@@ -12,7 +12,7 @@
 
 # volume
 "pa-volume-ctl.sh down"
-    XF86AudioLowerVolume
+    XF86AudioMute #XF86AudioLowerVolume
 "pa-volume-ctl.sh up"
     XF86AudioRaiseVolume
 
@@ -29,7 +29,7 @@
 # =================
 
 # simple screen lock
-"mpc disable 2 ; mpc stop ; sleep 1 ; xset dpms force off ; xtrlock ; mpc enable 2"
+"mpc disable 2 & mpc stop & xscreensaver-command -lock ; mpc enable 2"
     XF86Launch1
 
 # mpd
@@ -43,9 +43,9 @@
     XF86AudioNext
 
 # notebook backlight
-"vaio-backlight.sh up"
+"sudo vaio-fw21e-backlight2.sh up"
     XF86MonBrightnessUp
-"vaio-backlight.sh down"
+"sudo vaio-fw21e-backlight2.sh down"
     XF86MonBrightnessDown
 
 "xtrlock & /home/lidel/cl/bin/vaio-s2ram.sh"
@@ -60,7 +60,7 @@
     XF86HomePage
 
 # simple screen lock + quick and ugly keyboard fix
-"mpc disable 2 ; mpc stop ; sleep 1 ; xset dpms force off ; xtrlock ; mpc enable 2 ; setxkbmap -model evdev -layout plantoni"
+"mpc disable 2 & mpc stop & xscreensaver-command -lock ; mpc enable 2"
     XF86Sleep
 
 # suspend 2 ram
@@ -76,3 +76,7 @@
     KP_Down
 "mpc next"
     KP_Right
+
+# better key volume down
+"pa-volume-ctl.sh down"
+    XF86AudioMute #XF86AudioLowerVolume
