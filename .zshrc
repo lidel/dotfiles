@@ -118,7 +118,7 @@ alias c="cd ~ ; clear"
 alias m="ionice -c2 -n0 mplayer"
 
 alias e="emerge"
-yt () { mplayer `youtube-dl -g -b "$@"` } # youtube player ( net-misc/youtube-dl and mplayer)
+yt () { mplayer `youtube-dl -g "$@"` } # youtube player ( net-misc/youtube-dl and mplayer)
 t () { date ; time $@ ; date } # timing commands
 
 # global aliases -- These do not have to be
