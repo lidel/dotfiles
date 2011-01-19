@@ -133,7 +133,7 @@ myAdditionalManageHook = composeOne $
       centerFloatC = [ "Gcolor2", "Sonata", "Galculator", "Pinentry", "Qtconfig"
                      , "Switch2", "Lxappearance", "Geeqie", "Wicd-client.py"
                      , "Xarchiver", ".", "Gqview", "Pystopwatch", "Blueman-manager" ]
-      ignoreC = [ "Do", "trayer" ]
+      ignoreC = [ "Do", "trayer", "ioUrbanTerror.x86_64" ]
       floatFF = [ "DTA", "Manager", "Extension", "Download", "Dialog", "Browser", "Toplevel" ]
 
 myManageHook = manageDocks
