@@ -27,6 +27,7 @@ import qualified XMonad.Actions.FlexibleResize as Flex
 import XMonad.Hooks.EwmhDesktops
 import XMonad.Hooks.SetWMName
 import XMonad.Hooks.ManageHelpers
+import XMonad.Hooks.WorkspaceByPos
 
 
 import XMonad.Util.Themes
@@ -37,19 +38,6 @@ import XMonad.Layout.ResizableTile
 
 -- for LibNotifyUrgencyHook
 import XMonad.Util.NamedWindows (getName)
-
-
--- remove when upgraded to darcs (0.9)
--- import Data.List
--- xmobarStrip :: String -> String
--- xmobarStrip = strip [] where
---    strip keep x
---      | null x                 = keep
---      | "<fc="  `isPrefixOf` x = strip keep (drop 1 . dropWhile (/= '>') $ x)
---      | "</fc>" `isPrefixOf` x = strip keep (drop 5  x)
---      | '<' == head x          = strip (keep ++ "<") (tail x)
---      | otherwise              = let (good,x') = span (/= '<') x
---                                 in strip (keep ++ good) x'
 
 ------------------------------------------------------------------------
 myTerminal      = "urxvtc_wrapper"
@@ -138,6 +126,7 @@ myAdditionalManageHook = composeOne $
 
 myManageHook = manageDocks
                <+> myAdditionalManageHook
+               <+> workspaceByPos
                <+> composeAll [(isFullscreen --> doFullFloat)]
                <+> manageHook defaultConfig
 ------------------------------------------------------------------------
