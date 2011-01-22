@@ -12,32 +12,27 @@ import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
 import IO
 import XMonad.Util.Run (spawnPipe, safeSpawn)
-
 import XMonad.Util.EZConfig
-
-import XMonad.Hooks.ManageDocks
-import XMonad.Hooks.DynamicLog
-import XMonad.Hooks.UrgencyHook
-import XMonad.Actions.UpdatePointer
-import XMonad.Actions.CycleWS
-
--- resize windows y with mod+a / mod+z
-import qualified XMonad.Actions.FlexibleResize as Flex
+import XMonad.Util.Themes
+import XMonad.Util.NamedWindows (getName) -- for LibNotifyUrgencyHook
 
 import XMonad.Hooks.EwmhDesktops
 import XMonad.Hooks.SetWMName
 import XMonad.Hooks.ManageHelpers
 import XMonad.Hooks.WorkspaceByPos
+import XMonad.Hooks.ManageDocks
+import XMonad.Hooks.DynamicLog
+import XMonad.Hooks.UrgencyHook
 
+import XMonad.Actions.UpdatePointer
+import XMonad.Actions.CycleWS
+import qualified XMonad.Actions.FlexibleResize as Flex -- resize windows y with mod+a / mod+z
 
-import XMonad.Util.Themes
 import XMonad.Layout.Tabbed
 import XMonad.Layout.Maximize
 import XMonad.Layout.NoBorders
 import XMonad.Layout.ResizableTile
-
--- for LibNotifyUrgencyHook
-import XMonad.Util.NamedWindows (getName)
+import XMonad.Layout.ThreeColumns
 
 ------------------------------------------------------------------------
 myTerminal      = "urxvtc_wrapper"
@@ -79,14 +74,16 @@ lidelDarkTheme = defaultTheme { inactiveBorderColor = myInactiveBorderColor
                               }
 ------------------------------------------------------------------------
 
-myLayout = maximize (tiled ||| Mirror tiled ||| tabbedBottom shrinkText lidelDarkTheme )
+myLayout = maximize (tiled ||| tiled3 ||| tabbedBottom shrinkText lidelDarkTheme )
   where
      -- default tiling algorithm partitions the screen into two panes
      tiled   = ResizableTall nmaster delta ratio []
+     tiled3  = ThreeCol nmaster delta ratio3
      -- The default number of windsws in the master pane
      nmaster = 1
      -- Default proportion of screen occupied by master pane
      ratio   = 1/2
+     ratio3  = -1/3
      -- Percent of screen to increment by when resizing panes
      delta   = 3/100
 
@@ -177,7 +174,7 @@ main = do
                                                 ppLayout    = xmobarColor myDecoTextColor myEmptyColor .
                                                       (\ x -> case x of
                                                           "Maximize ResizableTall"            -> "[]="
-                                                          "Maximize Mirror ResizableTall"     -> "TTT"
+                                                          "Maximize ThreeCol"                 -> "T3="
                                                           "Maximize Tabbed Bottom Simplest"   -> "Tab"
                                                           _                         -> pad x)
                                                 }) >> updatePointer Nearest,
