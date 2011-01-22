@@ -29,7 +29,7 @@
 # =================
 
 # simple screen lock
-"mpc disable 2 & mpc stop & purple-remote setstatus?status=away & xscreensaver-command -lock ; purple-remote setstatus?status=avaiable ; mpc enable 2"
+"mpc disable 2 & mpc stop & xscreensaver-command -lock ; mpc enable 2"
     XF86Launch1
 
 # mpd
@@ -48,7 +48,7 @@
 "sudo /home/lidel/bin/vaio-fw21e-backlight2.sh down"
     XF86MonBrightnessDown
 
-"xtrlock & mpc stop & purple-remote setstatus?status=offline & /home/lidel/cl/bin/vaio-s2ram.sh"
+"xtrlock & mpc stop & /home/lidel/cl/bin/vaio-s2ram.sh"
     Mod4 + XF86AudioMedia
 
 
@@ -60,11 +60,11 @@
     XF86HomePage
 
 # simple screen lock
-"mpc disable 2 & mpc stop & purple-remote setstatus?status=away & xscreensaver-command -lock ; purple-remote setstatus?status=avaiable ; mpc enable 2"
+"mpc disable 2 & mpc stop & xscreensaver-command -lock ; mpc enable 2"
     XF86Sleep
 
 # suspend 2 ram
-"xtrlock & mpc stop & purple-remote setstatus?status=offline & /home/lidel/cl/bin/vaio-s2ram.sh"
+"xtrlock & mpc stop & /home/lidel/cl/bin/vaio-s2ram.sh"
     Mod4 + XF86Sleep
 
 # mpd
