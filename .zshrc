@@ -148,9 +148,9 @@ zless () { less -f <(zcat $*) }
 # simple notifier
 saydone () {
     if [ $? = 0 ]; then
-          notify-send ":-) done "
-      else
-          notify-send --urgency=critical ":( failed"
+        notify-send -i gtk-dialog-info "done :-)"
+    else
+        notify-send -i gtk-dialog-info --urgency=critical "failed :-("
     fi
 }
 
