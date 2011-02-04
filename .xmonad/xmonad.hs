@@ -99,8 +99,9 @@ myAdditionalManageHook = composeOne $
     -- ++
     --[ resource  =? r                -?> doCenterFloat | r <- centerFloatR ]
     ++
-    [ className =? "Firefox" <&&> resource =? r -?> doCenterFloat
-      | r <- floatFF ]
+    [ className =? "Firefox" <&&> resource =? r -?> doCenterFloat | r <- floatFF ]
+    ++
+    [ className =? "Minefield" <&&> resource =? r -?> doCenterFloat | r <- floatFF ]
     ++
     -- auto shift
     [ className =? c         -?> doShift t
@@ -114,12 +115,12 @@ myAdditionalManageHook = composeOne $
       unFloat = ask >>= doF . W.sink
       -- define application handling exceptions here
       floatC  = [ "psi", "Gimp", "Vncviewer", "Qt-dotnet.dll", "Skype", "Wine", "Pidgin"
-                     , "Intensity_CClient", "Gnome-mplayer", "Gimp-2.6" ]
+                     , "Intensity_CClient", "Gnome-mplayer", "Gimp-2.6", "Psi" ]
       centerFloatC = [ "Gcolor2", "Sonata", "Galculator", "Pinentry", "Qtconfig"
                      , "Switch2", "Lxappearance", "Geeqie", "Wicd-client.py"
                      , "Xarchiver", ".", "Gqview", "Pystopwatch", "Blueman-manager" ]
       ignoreC = [ "Do", "trayer", "ioUrbanTerror.x86_64" ]
-      floatFF = [ "DTA", "Manager", "Extension", "Download", "Dialog", "Browser", "Toplevel" ]
+      floatFF = [ "DTA", "Manager", "Extension", "Download", "Dialog", "Browser", "Toplevel", "Places" ]
 
 myManageHook = manageDocks
                <+> myAdditionalManageHook
