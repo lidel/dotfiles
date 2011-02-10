@@ -31,6 +31,8 @@
     XF86AudioLowerVolume
 "pa-volume-ctl.sh up"
     XF86AudioRaiseVolume
+"pa-volume-ctl.sh mute"
+    XF86AudioMute
 
 # mpd
 "mpc prev"
