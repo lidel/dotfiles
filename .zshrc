@@ -116,9 +116,10 @@ alias d='dirs -v'
 alias c="cd ~ ; clear"
 #m () { xset s off ; ionice -c2 -n0 mplayer "$@" ; xset s on }
 alias m="ionice -c2 -n0 mplayer"
-alias m-heartbeat="ionice -c2 -n0 mplayer -heartbeat-cmd 'xscreensaver-command -deactivate'"
+alias m-fs="ionice -c2 -n0 mplayer -fs -heartbeat-cmd 'xscreensaver-command -deactivate'"
 
 alias e="emerge"
+alias ytget="youtube-dl -t" # downloads yt video and saves it under meaningful filename
 yt () { mplayer `youtube-dl -g "$@"` } # youtube player ( net-misc/youtube-dl and mplayer)
 t () { date ; time $@ ; date } # timing commands
 
