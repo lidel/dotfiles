@@ -116,6 +116,7 @@ alias d='dirs -v'
 alias c="cd ~ ; clear"
 #m () { xset s off ; ionice -c2 -n0 mplayer "$@" ; xset s on }
 alias m="ionice -c2 -n0 mplayer"
+alias m-heartbeat="ionice -c2 -n0 mplayer -heartbeat-cmd 'xscreensaver-command -deactivate'"
 
 alias e="emerge"
 yt () { mplayer `youtube-dl -g "$@"` } # youtube player ( net-misc/youtube-dl and mplayer)
