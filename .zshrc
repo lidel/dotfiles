@@ -114,13 +114,13 @@ alias lsa='ls -F --color=auto --group-directories-first -ld .*' # list only file
 alias l=ls
 alias d='dirs -v'
 alias c="cd ~ ; clear"
-#m () { xset s off ; ionice -c2 -n0 mplayer "$@" ; xset s on }
+#m () { xset s off ; ionice -c2 -n0 mplayer2 "$@" ; xset s on }
 alias m="ionice -c2 -n0 mplayer"
-alias m-fs="ionice -c2 -n0 mplayer -fs -heartbeat-cmd 'xscreensaver-command -deactivate'"
+alias m-fs="ionice -c2 -n0 mplayer2 -fs -heartbeat-cmd 'xscreensaver-command -deactivate'"
 
 alias e="emerge"
 alias ytget="youtube-dl -t" # downloads yt video and saves it under meaningful filename
-yt () { mplayer `youtube-dl -g "$@"` } # youtube player ( net-misc/youtube-dl and mplayer)
+yt () { mplayer2 `youtube-dl -g "$@"` } # youtube player ( net-misc/youtube-dl and mplayer)
 t () { date ; time $@ ; date } # timing commands
 
 # global aliases -- These do not have to be
