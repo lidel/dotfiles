@@ -115,7 +115,7 @@ alias l=ls
 alias d='dirs -v'
 alias c="cd ~ ; clear"
 #m () { xset s off ; ionice -c2 -n0 mplayer2 "$@" ; xset s on }
-alias m="ionice -c2 -n0 mplayer"
+alias m="ionice -c2 -n0 mplayer2"
 alias m-fs="ionice -c2 -n0 mplayer2 -fs -heartbeat-cmd 'xscreensaver-command -deactivate'"
 
 alias e="emerge"
