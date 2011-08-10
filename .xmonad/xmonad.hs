@@ -115,11 +115,11 @@ myAdditionalManageHook = composeOne $
       unFloat = ask >>= doF . W.sink
       -- define application handling exceptions here
       floatC  = [ "psi", "Gimp", "Vncviewer", "Qt-dotnet.dll", "Skype", "Wine", "Pidgin"
-                     , "Intensity_CClient", "Gnome-mplayer", "Gimp-2.6", "Psi" ]
-      centerFloatC = [ "Gcolor2", "Sonata", "Galculator", "Pinentry", "Qtconfig"
+                     , "Intensity_CClient", "Gnome-mplayer", "Gimp-2.6", "Psi", "Kadu" ]
+      centerFloatC = [ "Gcolor2", "Sonata", "Galculator", "Pinentry", "Qtconfig", "glxgears"
                      , "Switch2", "Lxappearance", "Geeqie", "Wicd-client.py"
                      , "Xarchiver", ".", "Gqview", "Pystopwatch", "Blueman-manager" ]
-      ignoreC = [ "Do", "trayer", "ioUrbanTerror.x86_64" ]
+      ignoreC = [ "Do", "trayer", "ioUrbanTerror.x86_64", "Xfce4-notifyd" ]
       floatFF = [ "DTA", "Manager", "Extension", "Download", "Dialog", "Browser", "Toplevel", "Places" ]
 
 myManageHook = manageDocks
@@ -131,6 +131,7 @@ myManageHook = manageDocks
 -- Not needing a mouse doesn't mean not using it ;-)
 button8     =  8 :: Button
 button9     =  9 :: Button
+button13    = 13 :: Button
 
 ------------------------------------------------------------------------
 myTrayer = "killall trayer ; exec trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --widthtype request --transparent true --alpha 0 --tint 0x0000000 --heighttype pixel --height 16 --distance 0"
@@ -187,7 +188,6 @@ main = do
                  , ((myModMask,xK_Right),             moveTo Next HiddenNonEmptyWS)   -- next used workspace
                  , ((myModMask.|.shiftMask,xK_Right), shiftTo Next HiddenNonEmptyWS)  -- next used workspace
                  , ((myModMask,xK_0),                 moveTo Next EmptyWS)      -- find a free workspace
-                 , ((0,0x1008ff1b),                   moveTo Next EmptyWS)      -- XF86Search - find a free workspace
                  , ((myModMask.|.shiftMask,xK_0),     shiftTo Next EmptyWS)     -- move to a free workspace
                  , ((myModMask,xK_m), withFocused (sendMessage . maximizeRestore))
                  , ((myModMask, xK_z), sendMessage MirrorShrink)
@@ -200,5 +200,6 @@ main = do
                  , ((myModMask, button1), (\w -> focus w >> mouseMoveWindow w)) -- fix bug with master (http://code.google.com/p/xmonad/issues/detail?id=241)
                  , ((0, button8), (\w -> moveTo Prev HiddenNonEmptyWS)) -- my mouse has 2 arrows under thumb
                  , ((0, button9), (\w -> moveTo Next HiddenNonEmptyWS)) -- i use them for 'next/prev active workspace'
+                 , ((myModMask, button2), (\w -> moveTo Next EmptyWS)) -- find a free workspace
                  ]
 
