@@ -120,7 +120,11 @@ alias m-fs="ionice -c2 -n0 mplayer2 -fs -heartbeat-cmd 'xscreensaver-command -de
 
 alias e="emerge"
 alias ytget="youtube-dl -t" # downloads yt video and saves it under meaningful filename
-yt () { mplayer2 `youtube-dl -g "$@"` } # youtube player ( net-misc/youtube-dl and mplayer)
+yt () {
+    ytcookie=$( mktemp -ut "yt-XXXXXX" );
+    m -cookies -cookies-file ${ytcookie} $(youtube-dl -g --cookies ${ytcookie} "$@");
+    rm -f $ytcookie
+}
 t () { date ; time $@ ; date } # timing commands
 
 # global aliases -- These do not have to be
