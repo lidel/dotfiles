@@ -131,7 +131,6 @@ myManageHook = manageDocks
 -- Not needing a mouse doesn't mean not using it ;-)
 button8     =  8 :: Button
 button9     =  9 :: Button
-button13    = 13 :: Button
 
 ------------------------------------------------------------------------
 myTrayer = "killall trayer ; exec trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --widthtype request --transparent true --alpha 0 --tint 0x0000000 --heighttype pixel --height 16 --distance 0"
