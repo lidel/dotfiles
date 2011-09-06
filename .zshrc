@@ -142,11 +142,11 @@ alias -g T='tail'
 update-dotfiles () {
     ping -q -c1 github.com && \
     cp ~/.zshrc ~/.zshrc.old && \
-    wget http://github.com/lidel/dotfiles/raw/master/.zshrc -O ~/.zshrc && \
+    wget --no-check-certificate https://github.com/lidel/dotfiles/raw/master/.zshrc -O ~/.zshrc && \
     (test -e ~/.zshprompt && cp ~/.zshprompt ~/.zshprompt.old) && \
-    wget http://github.com/lidel/dotfiles/raw/master/.zshprompt -O ~/.zshprompt && \
+    wget --no-check-certificate https://github.com/lidel/dotfiles/raw/master/.zshprompt -O ~/.zshprompt && \
     (test -e ~/.vimrc && cp ~/.vimrc ~/.vimrc.old) && \
-    wget http://github.com/lidel/dotfiles/raw/master/.vimrc -O ~/.vimrc && \
+    wget --no-check-certificate https://github.com/lidel/dotfiles/raw/master/.vimrc -O ~/.vimrc && \
     (mkdir -p ~/.vim/backup ; mkdir -p ~/.vim/tmp)
     /usr/bin/env zsh
     source ~/.zshrc
