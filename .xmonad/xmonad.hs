@@ -143,9 +143,9 @@ instance UrgencyHook LibNotifyUrgencyHook where
         name <- getName w
         ws <- gets windowset
         whenJust (W.findTag w ws) (flash name)
-        where flash name index = spawn "notify-send URGENCY"
---      where flash name index =
---                safeSpawn "notify-send" "" --(show name ++ " requests your attention on workspace " ++ index)
+      where flash name index =
+                safeSpawn "notify-send" [show name ++ " requests your attention on workspace " ++ index]
+
 ------------------------------------------------------------------------
 main = do
         xmproc <- spawnPipe "xmobar"
