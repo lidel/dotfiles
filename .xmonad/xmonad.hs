@@ -144,7 +144,7 @@ instance UrgencyHook LibNotifyUrgencyHook where
         ws <- gets windowset
         whenJust (W.findTag w ws) (flash name)
       where flash name index =
-                safeSpawn "notify-send" [show name ++ " requests your attention on workspace " ++ index]
+                safeSpawn "notify-send" ["-i", "gtk-dialog-info", show name ++ " requests your attention on workspace " ++ index]
 
 ------------------------------------------------------------------------
 main = do
