@@ -134,7 +134,7 @@ button9     =  9 :: Button
 
 ------------------------------------------------------------------------
 myTrayer = "killall trayer ; exec trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --widthtype request --transparent true --alpha 0 --tint 0x0000000 --heighttype pixel --height 16 --distance 0"
-myDmenu  = "exe=`dmenu_path | dmenu -nb '" ++ myInactiveColor ++ "' -nf '" ++ myInactiveTextColor ++ "' -sb '" ++ myActiveColor  ++ "' -sf '" ++ myActiveTextColor ++ "' -fn '" ++ myFontName ++ "'` && eval \"exec $exe\""
+myDmenu  = "exe=`dmenu_run -nb '" ++ myInactiveColor ++ "' -nf '" ++ myInactiveTextColor ++ "' -sb '" ++ myActiveColor  ++ "' -sf '" ++ myActiveTextColor ++ "' -fn '" ++ myFontName ++ "'` && eval \"exec $exe\""
 ------------------------------------------------------------------------
 data LibNotifyUrgencyHook = LibNotifyUrgencyHook deriving (Read, Show)
 -- simple notify when window requires attention
