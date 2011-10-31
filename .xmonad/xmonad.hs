@@ -1,7 +1,7 @@
--- Xmonad config file (0.8-0.9)
+-- Xmonad config file (0.9)
 -- by Marcin Rataj (http://lidel.org)
 -- Updates: http://github.com/lidel/dotfiles/
--- License: public domain
+-- License: public domain / CC0
 -- vim: ts=8 et sw=8
 -- xmonad zen: Normally, you'd only override those defaults you care about.
 
@@ -35,7 +35,6 @@ import XMonad.Layout.ResizableTile
 import XMonad.Layout.ThreeColumns
 
 ------------------------------------------------------------------------
-myTerminal      = "urxvtc_wrapper"
 myBorderWidth   = 1
 myModMask       = mod4Mask
 myNumlockMask   = 0
@@ -131,10 +130,10 @@ myManageHook = manageDocks
 -- Not needing a mouse doesn't mean not using it ;-)
 button8     =  8 :: Button
 button9     =  9 :: Button
-
 ------------------------------------------------------------------------
-myTrayer = "killall trayer ; exec trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --widthtype request --transparent true --alpha 0 --tint 0x0000000 --heighttype pixel --height 16 --distance 0"
-myDmenu  = "exe=`dmenu_run -nb '" ++ myInactiveColor ++ "' -nf '" ++ myInactiveTextColor ++ "' -sb '" ++ myActiveColor  ++ "' -sf '" ++ myActiveTextColor ++ "' -fn '" ++ myFontName ++ "'` && eval \"exec $exe\""
+myTerminal      = "urxvtc-wrapper.sh"
+myTrayer        = "killall trayer ; exec trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --widthtype request --transparent true --alpha 0 --tint 0x0000000 --heighttype pixel --height 16 --distance 0"
+myDmenuRun      = "exe=`dmenu_run -nb '" ++ myInactiveColor ++ "' -nf '" ++ myInactiveTextColor ++ "' -sb '" ++ myActiveColor  ++ "' -sf '" ++ myActiveTextColor ++ "' -fn '" ++ myFontName ++ "'` && eval \"exec $exe\""
 ------------------------------------------------------------------------
 data LibNotifyUrgencyHook = LibNotifyUrgencyHook deriving (Read, Show)
 -- simple notify when window requires attention
@@ -191,8 +190,27 @@ main = do
                  , ((myModMask,xK_m), withFocused (sendMessage . maximizeRestore))
                  , ((myModMask, xK_z), sendMessage MirrorShrink)
                  , ((myModMask, xK_a), sendMessage MirrorExpand)
-                 -- third parties
-                 , ((myModMask, xK_p), spawn myDmenu) -- themed dmenu
+                 -- base
+                 , ((myModMask, xK_p), spawn myDmenuRun)        -- run prompt
+                 , ((myModMask, xK_grave), spawn myTerminal)    -- terminal
+                 , ((myModMask, xK_f), spawn "thunar")          -- file manager
+                 -- mpd
+                 , ((0, 0x1008ff14), spawn "mpc toggle")    -- XF86AudioPlay
+                 , ((0, 0x1008ff15), spawn "mpc stop")      -- XF86AudioStop
+                 , ((0, 0x1008ff16), spawn "mpc prev")      -- XF86AudioPrev
+                 , ((0, 0x1008ff17), spawn "mpc next")      -- XF86AudioNext
+                 -- volume
+                 , ((0, 0x1008ff11), spawn "pa-volume-ctl.sh down") -- XF86AudioLowerVolume
+                 , ((0, 0x1008ff13), spawn "pa-volume-ctl.sh up")   -- XF86AudioRaiseVolume
+                 , ((0, 0x1008ff12), spawn "pa-volume-ctl.sh mute") -- XF86AudioMute
+                 -- brightness
+                 , ((0, 0x1008ff02), spawn "vaio-fw21e-backlight2.sh up")   -- XF86MonBrightnessUp
+                 , ((0, 0x1008ff03), spawn "vaio-fw21e-backlight2.sh down") -- XF86MonBrightnessDown
+                 -- toys
+                 , ((myModMask, xK_Print), spawn "sleep 0.2 ; scrot")       -- print-screen
+                 , ((0, 0x1008ff2f), spawn "xscreensaver-command -lock")    -- lock screen keyboard (XF86Sleep)
+                 , ((0, 0x1008ff41), spawn "xscreensaver-command -lock")    -- lock screen vaio key (XF86Launch1)
+                 , ((myModMask, 0x1008ff2f), spawn "vaio-s2ram.sh ; xscreensaver-command -lock") -- suspend + lock
                  ]
                  `additionalMouseBindings`
                  [ ((myModMask, button3), (\w -> focus w >> Flex.mouseResizeWindow w)) -- pretty resize
