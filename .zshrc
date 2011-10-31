@@ -122,7 +122,7 @@ alias e="emerge"
 alias ytget="youtube-dl -t" # downloads yt video and saves it under meaningful filename
 yt () {
     ytcookie=$( mktemp -ut "yt-XXXXXX" );
-    m -cookies -cookies-file ${ytcookie} $(youtube-dl -g --cookies ${ytcookie} "$@");
+    m -heartbeat-cmd 'xscreensaver-command -deactivate' -cookies -cookies-file ${ytcookie} $(youtube-dl -g --cookies ${ytcookie} "$@");
     rm -f $ytcookie
 }
 t () { date ; time $@ ; date } # timing commands
