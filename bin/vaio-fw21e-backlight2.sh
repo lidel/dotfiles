@@ -2,7 +2,7 @@
 # Sony Vaio VGN-FW21E backlight control utility
 # by Marcin Rataj (http://lidel.org)
 # Updates: http://github.com/lidel/dotfiles/
-# License: public domaino
+# License: public domain
 #
 # Use with xf86-video-ati (formerly radeonhd)
 
