@@ -103,6 +103,8 @@ alias lower="tr \"[:upper:]\" \"[:lower:]\""
 alias sping="ping -i .002 -s 1472"
 alias whatismyip="wget -O- -q whatismyip.org"
 function calc () { awk "BEGIN { print $@ }" } # commandline calculator ;-)
+alias engage-lo="play -n -c1 synth whitenoise band -n 100 20 band -n 50 20 gain +25  fade h 1 864000 1" # play from  http://sox.sourceforge.net
+alias engage-hi="play -n -c1 synth whitenoise lowpass -1 120 lowpass -1 120 lowpass -1 120 gain +14" # play from  http://sox.sourceforge.net
 
 # handy ones
 alias ssh="ssh -4"
