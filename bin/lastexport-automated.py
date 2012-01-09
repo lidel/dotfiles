@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python2
 #-*- coding: utf-8 -*-
 
 # This program is free software: you can redistribute it and/or modify
@@ -19,11 +19,11 @@ Script for exporting tracks through audioscrobbler API
 Usage: lastexport.py -u USER [-o OUTFILE] [-p STARTPAGE] [-s SERVER]
 
 Original from: http://bugs.foocorp.net/projects/librefm/wiki/LastToLibre
-Auto-retry and bz2 compression added by Marcin Rataj.
+Quick auto-retry and bz2 compression added by Marcin Rataj.
 Output file is overriden, not appended.
 """
 
-import urllib2, urllib, sys, time, re, bz2
+import httplib, urllib, sys, time, re, bz2
 from xml.dom import minidom
 from optparse import OptionParser
 
@@ -47,7 +47,7 @@ def get_options(parser):
 def connect_server(username, startpage):
     """ Connect to server and get a XML page."""
     if server == "libre.fm":
-        baseurl = 'http://alpha.libre.fm/2.0/?'
+        baseurl = 'alpha.libre.fm'
         urlvars = dict(method='user.getrecenttracks',
                     api_key='ohaiderthisisthelastexportscript',
                     user=username,
@@ -55,7 +55,7 @@ def connect_server(username, startpage):
                     limit=200)
 
     elif server == "last.fm":
-        baseurl = 'http://ws.audioscrobbler.com/2.0/?'
+        baseurl = 'ws.audioscrobbler.com'
         urlvars = dict(method='user.getrecenttracks',
                     api_key='e38cc7822bd7476fe4083e36ee69748e',
                     user=username,
@@ -64,17 +64,19 @@ def connect_server(username, startpage):
     else:
         sys.exit("No config exist for this server, valid servers are: last.fm, libre.fm")
 
-
-    url = baseurl + urllib.urlencode(urlvars)
+    conn = httplib.HTTPConnection(baseurl, timeout=30)
     try:
-        f = urllib2.urlopen(url)
+        conn.request("GET", '/2.0/?' +  urllib.urlencode(urlvars))
+        r = conn.getresponse()
+        if r.status is not 200:
+           raise Exception()
+        response = r.read()
     except:
         print "Failed to open page %s, trying again.." % urlvars['page']
         response = None
         return response
-
-    response = f.read()
-    f.close()
+    finally:
+        conn.close()
 
     #bad hack to fix bad xml
     response = re.sub('\xef\xbf\xbe', '', response)
@@ -160,10 +162,9 @@ def main(username, startpage, outfile):
         if page > startpage:
             response =  connect_server(username, page)
             # If empty, try until it is okay
-            sleep = 10
             while response is None:
                 response =  connect_server(username, page)
-                time.sleep(sleep*2)
+                time.sleep(10)
 
         tracklist = get_tracklist(response)
         for i in range(len(tracklist)):
