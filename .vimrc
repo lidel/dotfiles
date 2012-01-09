@@ -17,7 +17,7 @@
     "colorscheme desert_modified    " http://fugal.net/vim/colors/desert.vim
     "colorscheme earendel           " pretty light theme
     "colorscheme desert256          " dark with light red and blue
-    "colorscheme wombat256
+    "colorscheme Sunburst           " 256 one from https://github.com/sickill/vim-sunburst
     "set background=dark            " i love my eyes and prefer dark background
                                     " (it may be already defined in some themes)
     "colorscheme charged-256        " universal fix for some bad themes
