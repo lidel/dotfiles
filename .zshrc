@@ -107,7 +107,6 @@ alias engage-lo="play -n -c1 synth whitenoise band -n 100 20 band -n 50 20 gain 
 alias engage-hi="play -n -c1 synth whitenoise lowpass -1 120 lowpass -1 120 lowpass -1 120 gain +14" # play from  http://sox.sourceforge.net
 
 # handy ones
-alias ssh="ssh -4"
 alias screen="screen -U"
 autoload -U zmv # smart mv: zmv '(*).lis' '$1.txt'
 alias lsa='ls -F --color=auto --group-directories-first -ld .*' # list only files beginning with "."
