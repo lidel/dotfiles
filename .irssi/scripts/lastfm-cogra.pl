@@ -21,7 +21,7 @@ $VERSION = "1.0.1";
 my @WHAT_ME  = 'cogram'; # keyword used when you ask about yourself (no parameter required, your nick is used)
 my @WHAT_ONE = 'cogra';  # ...someone else (takes parameter: last.fm login or an alias from ROUTES is used)
 
-my @LASTFM_API_KEY = 'get one from http://www.last.fm/api/account'
+my @LASTFM_API_KEY = 'get one from http://www.last.fm/api/account';
 my %ROUTES = ( # sometimes people want an alias..
     'alias' => 'lastfm_username',
     'short' => 'longlogin2435',
