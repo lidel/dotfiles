@@ -1,16 +1,14 @@
-"   .vimrc {
+"   .vimrc
 "   by Marcin Rataj (http://lidel.org)
 "
 "   Compiled from manual and external sources over last decade.
 "   Feel free to use it as a reference or base of your own .vimrc.
 "
-"   License: public domain
-"   Updates: http://github.com/lidel/dotfiles/
+"   License: CC0 (Public Domain)
+"   Updates: https://github.com/lidel/dotfiles/blob/master/.vimrc
 "
-"   vim: set foldenable foldmarker={,} foldlevel=0
-" }
 
-" basic eye-candy {
+" basic eye-candy
     set t_Co=256                    " force 256 term (x11-terms/rxvt-unicode +xterm-color under Gentoo)
     syntax on
     colorscheme xoria256_modified   " http://svn.ungrund.org/system/skel/.vim/colors/xoria256.vim
@@ -21,21 +19,18 @@
     "set background=dark            " i love my eyes and prefer dark background
                                     " (it may be already defined in some themes)
     "colorscheme charged-256        " universal fix for some bad themes
-" }
 
-" Default encoding {
+" Default encoding
     set termencoding=utf-8
     set fileencoding=utf-8
     set encoding=utf-8
-" }
 
-" General file handling {
+" General file handling
     filetype plugin on              " recognize filetypes
     filetype indent on
     set nowrap                      " Word wrap is the devil.
-" }
 
-" General file handling {
+" General file handling
     set autochdir                   " always switch to the current file directory
     set fileformats=unix,dos,mac    " support all three, in this order
     set backup                      " make backup files
@@ -44,9 +39,8 @@
     set directory=~/.vim/tmp        " directory to place swap files in
                                     " I don't want to edit these files
     set wildignore=*.o,*.obj,*.bak,*.exe,*.pyc,*.swp,*.jpg,*.gif,*.png
-" }
 
-" UI tweaks {
+" UI tweaks
     set nocompatible                " don't be compatible with vi
     set spelllang=pl                " default to polish
     set ttyfast                     " assume fast terminal connection
@@ -75,9 +69,7 @@
     set showmatch                   " show matching brackets
     set matchtime=5                 " how many tenths of a second to blink
                                     " matching brackets for
-" }
-
-" Default identation settings {
+" Default identation settings
     set expandtab                   " use spaces as tabs
     set softtabstop=4               " use 4 softtabstops
     set shiftwidth=4                " spaces to use for autoindent
@@ -85,22 +77,19 @@
     set autoindent                  " always set autoindenting on
     set smartindent                 " smartindent! :)
     "set nosmarttab                 " always use tabstops
-" }
 
-" Folding {
-    set foldenable                  " Turn on folding
-    set foldlevel=100               " Don't autofold anything ;-P
+" Folding
+    "set foldenable                  " Turn on folding
+    "set foldlevel=100               " Don't autofold anything ;-P
                                     " what movements open folds
-    set foldopen=block,hor,mark,percent,quickfix,tag
+    "set foldopen=block,hor,mark,percent,quickfix,tag
 
-    function SimpleFoldText() " {
-        return getline(v:foldstart).' '
-    endfunction " }
-    set foldtext=SimpleFoldText()  " Custom fold text function
-" }
+    "function SimpleFoldText() " {
+    "    return getline(v:foldstart).' '
+    "endfunction " }
+    "set foldtext=SimpleFoldText()  " Custom fold text function
 
-
-" Keybindings {
+" Keybindings
     set backspace=indent,eol,start      " make backspace a more flexible
     nnoremap    <F2> :set list!<CR>     " F2: Toggle list (display unprintable characters).
     nmap        <F5> :set nu!<CR>       " toggle line numbers
@@ -115,35 +104,28 @@
 
     set         pastetoggle=<F11>       " pastetoggle - this toggles 'paste'
     nmap        <F7> :set spell!<CR>    " toggle spellcheck
+
+" Small macros and fixes
+    nmap :W :w                          " NOCAPS :W = :w
+    nmap :Q :q                          " NOCAPS :Q = :q
+    nnoremap q: q:iq<esc>               " q: = :q
+    nmap _s :%s/\s\+$//<CR>             " remove all spaces at end of lines
+    nmap _S :%s/^\s\+//<CR>             " remove all spaces at beginning of lines
 " }
 
-" Small macros and fixes {
-    " NOCAPS :W = :w :Q = :q
-    nmap :W :w
-    nmap :Q :q
-    " We all hate hitting q: instead of :q ;-)
-    nnoremap q: q:iq<esc>
-    " Suppress all spaces at end/beginning of lines
-    nmap _s :%s/\s\+$//<CR>
-    nmap _S :%s/^\s\+//<CR>
-" }
-
-" Autocompletions {
+" Autocompletions
     iab beacuse    because              " fixing here since I can't fix my fingers
-" }
 
-" Plugin and external settings {
+" Plugin and external settings
     let g:html_use_css = "1"            " Use css with html export for syntax color
     let perl_extended_vars=1            " highlight advanced perl vars  inside strings
-" }
 
 
-" MAN wrapper {
+" MAN wrapper
     autocmd FileType man setlocal ro nonumber nolist fdm=indent fdn=2 sw=4 foldlevel=2 | nmap q :quit<CR>
-" }
 
-" LATEX {
-    " http://vim-latex.sourceforge.net/
+" LATEX
+    " More: http://vim-latex.sourceforge.net/
     let g:tex_flavor='latex'
     let g:Tex_DefaultTargetFormat = 'pdf'
     let g:Tex_CompileRule_pdf = 'make pdf'
@@ -157,12 +139,10 @@
     " all the figure labels. Very useful!
     au BufNewFile,BufRead *.tex set iskeyword+=:
     au BufNewFile,BufRead *.tex set sw=2 sts=2 shiftwidth=2 tabstop=2 wrap
-" }
 
-" PYTHON {
+" PYTHON
     " don't want comments at the beginning of the line in Python
     au BufNewFile,BufRead *.py set nocindent
     au BufNewFile,BufRead *.py set nosmartindent
     au BufNewFile,BufRead *.py set autoindent
-    set spelllang=en " default to english
-" }
+    set spelllang=en                    " default to english
