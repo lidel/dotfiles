@@ -106,8 +106,9 @@
     nmap        <F7> :set spell!<CR>    " toggle spellcheck
 
 " Small macros and fixes
-    nmap :W :w                          " NOCAPS :W = :w
-    nmap :Q :q                          " NOCAPS :Q = :q
+                                        " NOCAPS :W = :w, :Q = :q
+    nmap :W :w
+    nmap :Q :q
     nnoremap q: q:iq<esc>               " q: = :q
     nmap _s :%s/\s\+$//<CR>             " remove all spaces at end of lines
     nmap _S :%s/^\s\+//<CR>             " remove all spaces at beginning of lines
