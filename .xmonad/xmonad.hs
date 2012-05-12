@@ -112,8 +112,8 @@ myAdditionalManageHook = composeOne $
     where
       unFloat = ask >>= doF . W.sink
       -- define application handling exceptions here
-      floatC  = [ "psi", "Gimp", "Vncviewer", "Qt-dotnet.dll", "Skype", "Wine", "Pidgin"
-                     , "Intensity_CClient", "Gnome-mplayer", "Gimp-2.6", "Psi", "Kadu" ]
+      floatC  = [ "psi", "Vncviewer", "Qt-dotnet.dll", "Skype", "Wine", "Pidgin"
+                     , "Intensity_CClient", "Psi", "Kadu", "mplayer2" ]
       centerFloatC = [ "Gcolor2", "Sonata", "Galculator", "Pinentry", "Qtconfig", "glxgears"
                      , "Switch2", "Lxappearance", "Geeqie", "Wicd-client.py"
                      , "Xarchiver", ".", "Gqview", "Pystopwatch", "Blueman-manager" ]
