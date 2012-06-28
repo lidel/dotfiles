@@ -45,6 +45,3 @@ esac
 
 pactl set-sink-volume $DEFAULT_SINK `printf "0x%X" $NEW_VOL`
 
-# pipe used by xmobar's PipeReader widget
-echo $NEW_VOL*100/$FULL|bc > ~/.vol
-
