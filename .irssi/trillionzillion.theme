@@ -1,8 +1,8 @@
 ### Trillion Zillion Centipedes theme
 # by Marcin Rataj (http://lidel.org)
-# Updates: http://github.com/lidel/dotfiles/
+# Updates: https://github.com/lidel/dotfiles/blob/master/.irssi/trillionzillion.theme
 # License: public domain
-### version 0.2
+### version 0.3
 ### based on agon.theme
 
 default_color = "-1";
@@ -70,7 +70,7 @@ abstracts = {
   ##
 
   # the basic styling of how to print message, $0 = nick mode, $1 = nick
-  msgnick = "%c$0 %n$1-%c|%n %|";
+  msgnick = "%K<%c$0%n$1-%K>%n %|";
 
   # message from you is printed. "msgownnick" specifies the styling of the
   # nick ($0 part in msgnick) and "ownmsgnick" specifies the styling of the
@@ -114,8 +114,8 @@ abstracts = {
   ownprivmsg = "[%n$0%K(%n$1-%K)%n] ";
 
   # own private message in query
-  ownprivmsgnick = "{msgnick  $*}%W";
-  ownprivnick = "%n$*%W";
+  ownprivmsgnick = "{msgnick  $*}";
+  ownprivnick = "%c$*%n";
 
   # private message in query
   privmsgnick = "{msgnick  $*}";
