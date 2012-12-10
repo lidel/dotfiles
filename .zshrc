@@ -126,6 +126,9 @@ yt () {
     m -heartbeat-cmd 'xscreensaver-command -deactivate' -cookies -cookies-file ${ytcookie} $(youtube-dl -g --cookies ${ytcookie} "$@");
     rm -f $ytcookie
 }
+m-rar () {
+    unrar p -inul "$@" | mplayer2 -noidx -
+}
 t () { date ; time $@ ; date } # timing commands
 
 # global aliases -- These do not have to be
