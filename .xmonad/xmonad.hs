@@ -10,7 +10,7 @@ import System.Exit
 
 import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
-import IO
+import System.IO
 import XMonad.Util.Run (spawnPipe, safeSpawn)
 import XMonad.Util.EZConfig
 import XMonad.Util.Themes

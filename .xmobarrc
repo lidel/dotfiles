@@ -8,6 +8,7 @@ Config { font = "-*-terminus-medium-r-*-*-12-*-*-*-*-*-iso10646-*"
                     , Run CoreTemp ["-t", "<core0><fc=#666>/</fc><core1><fc=#666>°</fc>", "-L", "55", "-H", "60", "-n", "#ac9", "-h", "#ca9"] 100
                     , Run Memory ["-t", "<usedratio><fc=#666>%</fc>", "-L", "50", "-H", "75", "-n", "#ac9", "-h", "#ca9", "-l", "#888"] 20
                     , Run Network "wlan0" ["-t", "<rx><fc=#666>KiB</fc><fc=#444>/</fc><tx><fc=#666>KiB</fc>", "-L", "10", "-H", "100", "--normal", "#ac9", "--high", "#ca9"] 10
+                    , Run Network "eth0" ["-t", "<rx><fc=#666>KiB</fc><fc=#444>/</fc><tx><fc=#666>KiB</fc>", "-L", "10", "-H", "100", "--normal", "#ac9", "--high", "#ca9"] 10
                     -- , Run Network "usb0" ["-t", "<rx><fc=#666>KiB</fc><fc=#444>/</fc><tx><fc=#666>KiB</fc>", "-L", "10", "-H", "100", "--normal", "#ac9", "--high", "#ca9"] 10
                     -- color in next xmobar version , Run Volume "default" "Master" ["-t", "<volume><status>", "-O", "<fc=#ac9>♫</fc>", "-o", "<fc=#ca9>#</fc>"] 10
                     , Run Volume "default" "Master" ["-t", "<volume><fc=#555>♫</fc>"] 10
@@ -18,5 +19,5 @@ Config { font = "-*-terminus-medium-r-*-*-12-*-*-*-*-*-iso10646-*"
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = " %StdinReader% }{ %mpd% <fc=#555>:</fc> %default:Master% <fc=#555>:</fc> %wlan0% <fc=#555>:</fc> %cpufreq% <fc=#555>@</fc> %multicpu% <fc=#555>@</fc> %coretemp% <fc=#555>:</fc> %memory% <fc=#555>:</fc> %load% <fc=#555>:</fc> %date%               "
+       , template = " %StdinReader% }{ %mpd% <fc=#555>:</fc> %default:Master% <fc=#555>: W~</fc>%wlan0% <fc=#555>: E~</fc>%eth0% <fc=#555>:</fc> %cpufreq% <fc=#555>@</fc> %multicpu% <fc=#555>@</fc> %coretemp% <fc=#555>:</fc> %memory% <fc=#555>:</fc> %load% <fc=#555>:</fc> %date%               "
        }
