@@ -56,6 +56,7 @@ urxvt*saveLines:        2535
 urxvt*cursorBlink:      true
 urxvt*internalBorder:   3
 urxvt*urlLauncher:      /home/lidel/bin/browser-wrapper.sh
+urxvt*url-launcher:     /home/lidel/bin/browser-wrapper.sh
 urxvt*perl-ext-common:  selection-autotransform,matcher
 urxvt*cutchars:         `"()'*<>[]{|}
 urxvt.matcher.pattern.1: \\bwww\\.[\\w-]\\.[\\w./?&@#-]*[\\w/-]
