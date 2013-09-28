@@ -120,6 +120,8 @@ alias m="ionice -c2 -n0 mplayer2"
 alias m-fs="ionice -c2 -n0 mplayer2 -fs -heartbeat-cmd 'xscreensaver-command -deactivate'"
 
 alias e="emerge"
+alias v="vim"
+alias a="aria2c"
 alias ytget="youtube-dl -t" # downloads yt video and saves it under meaningful filename
 yt () {
     ytcookie=$( mktemp -ut "yt-XXXXXX" );
@@ -171,14 +173,14 @@ saydone () {
 }
 
 # http://ku1ik.com/2012/05/04/scratch-dir.html
-alias ns=new-scratch
+alias ns="new-scratch $HOME"
 function new-scratch {
   cur_dir="$HOME/scratch"
-  new_dir="$HOME/tmp/scratch-`date +'%s'`"
+  new_dir="$1/tmp/scratch-`date +%F-%T`"
   mkdir -p $new_dir
   ln -nfs $new_dir $cur_dir
   cd $cur_dir
-  echo "New scratch dir ready"
+  echo "New scratch dir ready ($new_dir)"
 }
 
 # vim as default editor (remote shells' crontab -e etc)
