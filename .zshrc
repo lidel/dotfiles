@@ -76,7 +76,18 @@ bindkey "^b" backward-word
 
 ## ALIASES
 
-alias rr='rm -Rf'
+alias rr='rm -rfI'
+rrr () {
+    for i in $*
+    do
+        if [ -f $i ]; then
+            shred -n1 -fzuv "$i"
+        elif [ -d $i ]; then
+            find "$i" -type f -exec shred -n1 -fzuv {} \;
+            rm -rf "$i"
+        fi
+    done
+}
 alias enman='LANG=en_GB LC_ALL=C man'
 alias psaux="ps aux"
 alias dv="dirs -v"
@@ -108,6 +119,8 @@ alias engage-hi="play -n -c1 synth whitenoise lowpass -1 120 lowpass -1 120 lowp
 
 # handy ones
 alias screen="screen -U"
+alias tma='tmux attach -d -t'
+alias tmux-pwd='tmux new -s $(basename $(pwd))' # create named tmux session where all shells start in pwd
 autoload -U zmv # smart mv: zmv '(*).lis' '$1.txt'
 alias lsa='ls -F --color=auto --group-directories-first -ld .*' # list only files beginning with "."
 
@@ -132,6 +145,7 @@ m-rar () {
     unrar p -inul "$@" | mplayer2 -noidx -
 }
 t () { date ; time $@ ; date } # timing commands
+
 
 # global aliases -- These do not have to be
 # at the beginning of the command line.
