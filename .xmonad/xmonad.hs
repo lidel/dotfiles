@@ -195,7 +195,7 @@ main = do
                  , ((myModMask, xK_v), spawn "pavucontrol")     -- sound manager
                  , ((myModMask, xK_Print), spawn "sleep 0.2 ; scrot")       -- print-screen
                  , ((myModMask, xK_Escape), spawn "xscreensaver-command -lock") -- lock screen
-                 , ((myModMask.|.shiftMask, xK_Escape), spawn "vaio-s2ram.sh ; xscreensaver-command -lock") -- suspend + lock
+                 , ((myModMask.|.shiftMask, xK_Escape), spawn "sudo pm-suspend & xscreensaver-command -lock") -- suspend + lock
                  -- mpd
                  , ((myModMask, 0x1008ff11), spawn "mpc prev")      -- XF86AudioLowerVolume
                  , ((myModMask, 0x1008ff13), spawn "mpc next")      -- XF86AudioRaiseVolume
@@ -210,8 +210,8 @@ main = do
                  , ((0, 0x1008ff16), spawn "mpc prev")      -- XF86AudioPrev
                  , ((0, 0x1008ff17), spawn "mpc next")      -- XF86AudioNext
                  , ((0, 0x1008ff41), spawn "xscreensaver-command -lock")    -- lock screen vaio key (XF86Launch1)
-                 , ((0, 0x1008ff02), spawn "vaio-fw21e-backlight2.sh up")   -- XF86MonBrightnessUp
-                 , ((0, 0x1008ff03), spawn "vaio-fw21e-backlight2.sh down") -- XF86MonBrightnessDown
+                 --, ((0, 0x1008ff02), spawn "vaio-fw21e-backlight2.sh up")   -- XF86MonBrightnessUp
+                 --, ((0, 0x1008ff03), spawn "vaio-fw21e-backlight2.sh down") -- XF86MonBrightnessDown
                  ]
                  `additionalMouseBindings`
                  [ ((myModMask, button3), (\w -> focus w >> Flex.mouseResizeWindow w)) -- pretty resize
