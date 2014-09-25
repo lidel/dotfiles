@@ -9,14 +9,15 @@
 #   gconftool-2 -s -t string /desktop/gnome/url-handlers/https/command '/home/lidel/bin/browser-wrapper.sh "%s"'
 
 #export MOZ_GLX_IGNORE_BLACKLIST=1
-export MOZ_DISABLE_PANGO=1
+#export MOZ_DISABLE_PANGO=1
+#export VDPAU_DRIVER=softpipe
 
 icon=/home/lidel/.icons/gnome-colors-common/scalable/actions/redo.svg
 
 firefox=/usr/bin/firefox
 
 ## fix empty urls
-URL="$*"; [ -z "$URL" ] && url=about:blank
+URL="$*"; [ -z "$URL" ] && URL=about:blank
 
 ## I like to know when URL was sent to a browser (notify-osd)
 notify-send -i $icon -h string:x-canonical-append:browser "Opening URL" "$URL" &

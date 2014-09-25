@@ -121,7 +121,6 @@
     let g:html_use_css = "1"            " Use css with html export for syntax color
     let perl_extended_vars=1            " highlight advanced perl vars  inside strings
 
-
 " MAN wrapper
     autocmd FileType man setlocal ro nonumber nolist fdm=indent fdn=2 sw=4 foldlevel=2 | nmap q :quit<CR>
 
@@ -143,7 +142,29 @@
 
 " PYTHON
     " don't want comments at the beginning of the line in Python
-    au BufNewFile,BufRead *.py set nocindent
-    au BufNewFile,BufRead *.py set nosmartindent
-    au BufNewFile,BufRead *.py set autoindent
+    "au BufNewFile,BufRead *.py set nocindent
+    "au BufNewFile,BufRead *.py set nosmartindent
+    "au BufNewFile,BufRead *.py set autoindent
     set spelllang=en                    " default to english
+
+
+" custom indents
+    let g:html_indent_inctags = "html,body,head,tbody"
+    autocmd FileType javascript setlocal sw=2 sts=2 et
+    autocmd FileType html       setlocal sw=2 sts=2 et
+
+" vim modeline
+    autocmd FileType javascript let b:TheCommentThing='//'
+    autocmd FileType     python let b:TheCommentThing='#'
+    autocmd FileType        cpp let b:TheCommentThing='//'
+    autocmd FileType          c let b:TheCommentThing='//'
+    autocmd FileType       bash let b:TheCommentThing='#'
+    autocmd FileType         sh let b:TheCommentThing='#'
+    autocmd FileType       html let b:TheCommentThing='##'
+    autocmd FileType        css let b:TheCommentThing='/*'
+
+command ML execute
+    \ '$s@$@\r'
+    \ .(exists('b:TheCommentThing') ? b:TheCommentThing : '')
+    \ .' vim\:ts=4\:sw=4\:et\:@|noh|write!|edit'
+

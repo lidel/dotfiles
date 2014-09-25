@@ -112,8 +112,8 @@ myAdditionalManageHook = composeOne $
     where
       unFloat = ask >>= doF . W.sink
       -- define application handling exceptions here
-      floatC  = [ "psi", "Vncviewer", "Qt-dotnet.dll", "Skype", "Wine", "Pidgin"
-                     , "Intensity_CClient", "Psi", "Kadu", "mplayer2" ]
+      floatC  = [ "psi", "Vncviewer", "Wine", "Pidgin"
+                     , "Intensity_CClient", "Psi", "Kadu", "mplayer2", "mpv", "qemu-system-x86_64" ]
       centerFloatC = [ "Gcolor2", "Sonata", "Galculator", "Pinentry", "Qtconfig", "glxgears"
                      , "Switch2", "Lxappearance", "Geeqie", "Wicd-client.py"
                      , "Xarchiver", ".", "Gqview", "Pystopwatch", "Blueman-manager" ]
@@ -195,7 +195,7 @@ main = do
                  , ((myModMask, xK_v), spawn "pavucontrol")     -- sound manager
                  , ((myModMask, xK_Print), spawn "sleep 0.2 ; scrot")       -- print-screen
                  , ((myModMask, xK_Escape), spawn "xscreensaver-command -lock") -- lock screen
-                 , ((myModMask.|.shiftMask, xK_Escape), spawn "sudo pm-suspend & xscreensaver-command -lock") -- suspend + lock
+                 , ((myModMask.|.shiftMask, xK_Escape), spawn "xscreensaver-command -lock ; sudo pm-suspend") -- suspend + lock
                  -- mpd
                  , ((myModMask, 0x1008ff11), spawn "mpc prev")      -- XF86AudioLowerVolume
                  , ((myModMask, 0x1008ff13), spawn "mpc next")      -- XF86AudioRaiseVolume
