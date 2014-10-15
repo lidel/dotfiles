@@ -168,7 +168,8 @@ update-dotfiles () {
     wget --no-check-certificate https://github.com/lidel/dotfiles/raw/master/.zshprompt -O ~/.zshprompt && \
     (test -e ~/.vimrc && cp ~/.vimrc ~/.vimrc.old) && \
     wget --no-check-certificate https://github.com/lidel/dotfiles/raw/master/.vimrc -O ~/.vimrc && \
-    (mkdir -p ~/.vim/backup ; mkdir -p ~/.vim/tmp)
+    (mkdir -p ~/.vim/backup ; mkdir -p ~/.vim/tmp) && \
+    wget --no-check-certificate https://github.com/lidel/dotfiles/raw/master/.tmux.conf -O ~/.tmux.conf
     /usr/bin/env zsh
     source ~/.zshrc
 }
