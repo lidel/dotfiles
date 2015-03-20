@@ -73,6 +73,24 @@ bindkey "^f" forward-word
 bindkey "^b" backward-word
 
 
+# info about running screen
+if [[ -x $(which screen) ]]; then
+    ZSHRC_SCREENLIST=$(screen -ls)
+    # do nothing if no screens or inside of one
+    if [[ $#ZSHRC_SCREENLIST -gt 42 ]] && [[ -z $STY ]]; then
+        echo $ZSHRC_SCREENLIST
+    fi
+fi
+
+# info about running tmux
+if [[ -x $(which tmux) ]]; then
+    ZSHRC_TMUXLIST=$(tmux ls 2>&1)
+    # do nothing if no tmux sessions or inside of one
+    if [[ $#ZSHRC_TMUXLIST -gt 47 ]] && [[ -z $TMUX ]]; then
+        echo "There is a tmux session in the background:"
+        echo $ZSHRC_TMUXLIST
+    fi
+fi
 
 ## ALIASES
 
@@ -130,7 +148,7 @@ alias l=ls
 alias d='dirs -v'
 alias c="cd ~ ; clear"
 #m () { xset s off ; ionice -c2 -n0 mplayer2 "$@" ; xset s on }
-alias m="ionice -c2 -n0 mplayer2"
+alias m="ionice -c2 -n0 mpv"
 alias m-fs="ionice -c2 -n0 mplayer2 -fs -heartbeat-cmd 'xscreensaver-command -deactivate'"
 
 alias e="emerge"
@@ -394,6 +412,8 @@ zstyle ':completion:*:functions' ignored-patterns '_*'
 
 
 ## MISC
+
+
 
 # local -- define private stuff there
 if [ -r ${HOME}/.zshrc_local ]; then
