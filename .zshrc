@@ -130,7 +130,8 @@ alias jpg2greyscale="mogrify -contrast -contrast dither -colors 256 -colorspace 
 alias r1600="mogrify -resize 1600x1280 -unsharp 1x1+0.3 -quality 90"
 alias lower="tr \"[:upper:]\" \"[:lower:]\""
 alias sping="ping -i .002 -s 1472"
-alias whatismyip="wget -O- -q whatismyip.org"
+alias whatismyip="dig +short myip.opendns.com @resolver1.opendns.com"
+alias whatismyip2="curl -s icanhazip.com"
 function calc () { awk "BEGIN { print $@ }" } # commandline calculator ;-)
 alias engage-lo="play -n -c1 synth whitenoise band -n 100 20 band -n 50 20 gain +25  fade h 1 864000 1" # play from  http://sox.sourceforge.net
 alias engage-hi="play -n -c1 synth whitenoise lowpass -1 120 lowpass -1 120 lowpass -1 120 gain +14" # play from  http://sox.sourceforge.net
@@ -180,15 +181,14 @@ alias -g T='tail'
 
 update-dotfiles () {
     ping -q -c1 github.com && \
-    cp ~/.zshrc ~/.zshrc.old && \
-    wget --no-check-certificate https://github.com/lidel/dotfiles/raw/master/.zshrc -O ~/.zshrc && \
-    (test -e ~/.zshprompt && cp ~/.zshprompt ~/.zshprompt.old) && \
-    wget --no-check-certificate https://github.com/lidel/dotfiles/raw/master/.zshprompt -O ~/.zshprompt && \
-    (test -e ~/.vimrc && cp ~/.vimrc ~/.vimrc.old) && \
-    wget --no-check-certificate https://github.com/lidel/dotfiles/raw/master/.vimrc -O ~/.vimrc && \
+    cat ~/.zshrc > ~/.zshrc.old && \
+    curl -L# https://github.com/lidel/dotfiles/raw/master/.zshrc > ~/.zshrc && \
+    (test -e ~/.zshprompt && cat ~/.zshprompt > ~/.zshprompt.old) && \
+    curl -L# https://github.com/lidel/dotfiles/raw/master/.zshprompt > ~/.zshprompt && \
+    (test -e ~/.vimrc && cat ~/.vimrc > ~/.vimrc.old) && \
+    curl -L# https://github.com/lidel/dotfiles/raw/master/.vimrc > ~/.vimrc && \
     (mkdir -p ~/.vim/backup ; mkdir -p ~/.vim/tmp) && \
-    wget --no-check-certificate https://github.com/lidel/dotfiles/raw/master/.tmux.conf -O ~/.tmux.conf
-    /usr/bin/env zsh
+    curl -L# https://github.com/lidel/dotfiles/raw/master/.tmux.conf > ~/.tmux.conf
     source ~/.zshrc
 }
 
