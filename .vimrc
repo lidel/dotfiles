@@ -147,11 +147,14 @@
     "au BufNewFile,BufRead *.py set autoindent
     set spelllang=en                    " default to english
 
+" Javascript
+    autocmd BufRead,BufNewFile *.es6 setfiletype javascript
 
 " custom indents
     let g:html_indent_inctags = "html,body,head,tbody"
     autocmd FileType javascript setlocal sw=2 sts=2 et
     autocmd FileType html       setlocal sw=2 sts=2 et
+    autocmd FileType ruby       setlocal sw=2 sts=2 et
 
 " vim modeline
     autocmd FileType javascript let b:TheCommentThing='//'
