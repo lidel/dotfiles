@@ -84,7 +84,7 @@ fi
 
 # info about running tmux
 if [[ -x $(which tmux) ]]; then
-    ZSHRC_TMUXLIST=$(tmux ls 2>&1)
+    ZSHRC_TMUXLIST=$(tmux ls 2>&1 | grep -v 'failed to connect to server')
     # do nothing if no tmux sessions or inside of one
     if [[ $#ZSHRC_TMUXLIST -gt 47 ]] && [[ -z $TMUX ]]; then
         echo "There is a tmux session in the background:"
@@ -160,9 +160,6 @@ yt () {
     ytcookie=$( mktemp -ut "yt-XXXXXX" );
     m -heartbeat-cmd 'xscreensaver-command -deactivate' -cookies -cookies-file ${ytcookie} $(youtube-dl -g --cookies ${ytcookie} "$@");
     rm -f $ytcookie
-}
-m-rar () {
-    unrar p -inul "$@" | mplayer2 -noidx -
 }
 t () { date ; time $@ ; date } # timing commands
 
