@@ -17,7 +17,7 @@ Xft.rgba:           rgb
 
 
 ! urxvt is my terminal of choice (http://goo.gl/reh0)
-urxvt*perl-ext-common:  selection-autotransform,matcher,font-size
+urxvt*perl-ext-common:  selection-autotransform,matcher
 
 urxvt*foreground:   #dCdCdC
 urxvt*cursorColor:  #c0c0c0
@@ -58,8 +58,8 @@ urxvt.fading:           20 !term unfocus
 urxvt*saveLines:        2535
 urxvt*cursorBlink:      true
 urxvt*internalBorder:   3
-urxvt*urlLauncher:      /home/lidel/bin/browser-wrapper.sh
-urxvt*url-launcher:     /home/lidel/bin/browser-wrapper.sh
+urxvt*urlLauncher:      browser-wrapper.sh
+urxvt*url-launcher:     browser-wrapper.sh
 urxvt*cutchars:         `"()'*<>[]{|}
 urxvt.matcher.pattern.1: \\bwww\\.[\\w-]\\.[\\w./?&@#-]*[\\w/-]
 urxvt*matcher.button:   1

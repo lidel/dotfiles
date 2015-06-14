@@ -136,6 +136,7 @@ function calc () { awk "BEGIN { print $@ }" } # commandline calculator ;-)
 alias engage-lo="play -n -c1 synth whitenoise band -n 100 20 band -n 50 20 gain +25  fade h 1 864000 1" # play from  http://sox.sourceforge.net
 alias engage-hi="play -n -c1 synth whitenoise lowpass -1 120 lowpass -1 120 lowpass -1 120 gain +14" # play from  http://sox.sourceforge.net
 alias makecachetag="echo -n 'Signature: 8a477f597d28d172789f06886806bc55' > CACHEDIR.TAG"
+alias exif-fix-datetimeoriginal="exiftool '-exif:datetimeoriginal<filemodifydate' -if 'not \$exif:-exif:datetimeoriginal' -P"
 
 # handy ones
 alias screen="screen -U"
@@ -150,7 +151,8 @@ alias d='dirs -v'
 alias c="cd ~ ; clear"
 #m () { xset s off ; ionice -c2 -n0 mplayer2 "$@" ; xset s on }
 alias m="ionice -c2 -n0 mpv"
-alias m-fs="ionice -c2 -n0 mplayer2 -fs -heartbeat-cmd 'xscreensaver-command -deactivate'"
+alias m.25="ionice -c2 -n0 mpv -speed 1.25"
+#alias m-fs="ionice -c2 -n0 mplayer2 -fs -heartbeat-cmd 'xscreensaver-command -deactivate'"
 
 alias e="emerge"
 alias v="vim"
