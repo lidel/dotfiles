@@ -1,4 +1,4 @@
-Config { font = "-*-terminus-medium-r-*-*-12-*-*-*-*-*-iso10646-*"
+Config { font = "xft:Envy Code R:size=10"
        , bgColor = "#000"
        , fgColor = "#999"
        , position = TopW L 100
