@@ -1,8 +1,12 @@
--- Xmonad config file (0.9)
--- by Marcin Rataj (http://lidel.org)
--- Updates: http://github.com/lidel/dotfiles/
--- License: public domain / CC0
 -- vim: ts=8 et sw=8
+--
+-- NOTE: I stopped using xmonad around mid-2015 (moved to i3)
+--       This config file worked fine with xmonad 0.11.1,
+--       but may have issues with newer versions.
+--
+-- Xmonad config file
+-- by Marcin Rataj (http://lidel.org)
+-- License: public domain / CC0
 -- xmonad zen: Normally, you'd only override those defaults you care about.
 
 import XMonad
@@ -39,7 +43,7 @@ myBorderWidth   = 1
 myModMask       = mod4Mask
 myWorkspaces    = ["main","web"] ++ map show [3..8] ++ ["dl"]
 
-myFontName = "-*-terminus-medium-r-*-*-12-*-*-*-*-*-iso10646-*"
+myFontName = "xft:Envy Code R:size=10"
 
 myInactiveBorderColor   = "#111111"
 myActiveBorderColor     = "#333333"
@@ -99,14 +103,10 @@ myAdditionalManageHook = composeOne $
     ++
     [ className =? "Firefox" <&&> resource =? r -?> doCenterFloat | r <- floatFF ]
     ++
-    [ className =? "Minefield" <&&> resource =? r -?> doCenterFloat | r <- floatFF ]
-    ++
     -- auto shift
     [ className =? c         -?> doShift t
       | (c, t) <- [ ("Firefox", "web")
                   , ("Minefield", "web")
-                  , ("VirtualBox", "7")
-                  , ("Eclipse", "5")
                   ]
     ]
     where
