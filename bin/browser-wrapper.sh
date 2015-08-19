@@ -20,7 +20,7 @@ firefox=/usr/bin/firefox
 URL="$*"; [ -z "$URL" ] && URL=about:blank
 
 ## I like to know when URL was sent to a browser (notify-osd)
-notify-send -i $icon -h string:x-canonical-append:browser "Opening URL" "$URL" &
+notify-send -u low -i $icon -h string:x-canonical-append:browser "Opening URL" "$URL" &
 
 # try xremote first
 $firefox -new-tab "$URL" && exit 0
