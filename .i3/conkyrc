@@ -3,8 +3,8 @@
 #
 # vim: ts=4 et sw=4
 
-out_to_x no
-own_window no
+#out_to_x no
+#own_window no
 out_to_console yes
 background no
 max_text_width 0
@@ -136,7 +136,7 @@ ${endif}
       ${endif}
   },
   {
-    "full_text": "${loadavg 1} ${loadavg 2} ${loadavg 3}",
+    "full_text": "${loadavg 1}",
     "color":
     ${if_match ${loadavg 1}>4}
         "\#E84F4F"
@@ -147,6 +147,10 @@ ${endif}
             "\#909090"
         ${endif}
     ${endif}
+  },
+  {
+    "full_text": "${loadavg 2} ${loadavg 3}",
+    "color": "\#909090"
   },
   {
     "full_text": "${time %Y-%m-%d}",
