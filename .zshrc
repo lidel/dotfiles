@@ -133,10 +133,12 @@ alias sping="ping -i .002 -s 1472"
 alias whatismyip="dig +short myip.opendns.com @resolver1.opendns.com"
 alias whatismyip2="curl -s icanhazip.com"
 function calc () { awk "BEGIN { print $@ }" } # commandline calculator ;-)
-alias engage-lo="play -n -c1 synth whitenoise band -n 100 20 band -n 50 20 gain +25  fade h 1 864000 1" # play from  http://sox.sourceforge.net
-alias engage-hi="play -n -c1 synth whitenoise lowpass -1 120 lowpass -1 120 lowpass -1 120 gain +14" # play from  http://sox.sourceforge.net
 alias makecachetag="echo -n 'Signature: 8a477f597d28d172789f06886806bc55' > CACHEDIR.TAG"
 alias exif-fix-datetimeoriginal="exiftool '-exif:datetimeoriginal<filemodifydate' -if 'not \$exif:-exif:datetimeoriginal' -P"
+
+# enterprise ambient sound
+alias engage-lo="play -n -c1 synth whitenoise band -n 100 20 band -n 50 20 gain +25  fade h 1 864000 1" # play from  http://sox.sourceforge.net
+alias engage-hi="play -n -c1 synth whitenoise lowpass -1 120 lowpass -1 120 lowpass -1 120 gain +14" # play from  http://sox.sourceforge.net
 
 # handy ones
 alias screen="screen -U"
@@ -157,6 +159,7 @@ alias m.25="ionice -c2 -n0 mpv -speed 1.25"
 alias e="emerge"
 alias v="vim"
 alias a="aria2c"
+
 alias ytget="youtube-dl -t" # downloads yt video and saves it under meaningful filename
 yt () {
     ytcookie=$( mktemp -ut "yt-XXXXXX" );
@@ -164,6 +167,13 @@ yt () {
     rm -f $ytcookie
 }
 t () { date ; time $@ ; date } # timing commands
+
+# Transcode files to a DLNA-compatible legacy format
+ffmpeg-dlna () {
+    for file in $@; do
+        nice ionice -c3 ffmpeg -i "${file}" -y -threads 8 -target ntsc-dvd -b:v 4000k -maxrate 5000k -bufsize 2000k -qscale:v 1 -aspect 16:9 -ac 2 -ab 192000 "${file}_dlna.mpg"
+    done
+}
 
 
 # global aliases -- These do not have to be

@@ -16,6 +16,16 @@
 "pa-volume-ctl.sh mute"
     XF86AudioMute
 
+# MPD
+"mpc toggle"
+    Mod4 + XF86AudioMute
+
+"mpc prev"
+    Mod4 + XF86AudioLowerVolume
+
+"mpc next"
+    Mod4 + XF86AudioRaiseVolume
+
 # workaround for old i3: https://github.com/i3/i3/issues/1429
 "i3 workspace prev_on_output"
     b:8
