@@ -171,3 +171,19 @@ command ML execute
     \ .(exists('b:TheCommentThing') ? b:TheCommentThing : '')
     \ .' vim\:ts=4\:sw=4\:et\:@|noh|write!|edit'
 
+" golang (https://github.com/fatih/vim-go)
+    execute pathogen#infect()
+
+    let g:go_highlight_functions = 1
+    let g:go_highlight_methods = 1
+    let g:go_highlight_structs = 1
+    let g:go_highlight_operators = 1
+    let g:go_highlight_build_constraints = 1
+
+" outlining
+au BufEnter *.org setlocal sw=2 sts=2 et
+au BufEnter *.org setlocal backspace=2
+au BufEnter *.org setlocal tw=79 formatoptions+=t
+au BufEnter *.org setlocal fo=aw2tq " paragraph auto-reflow
+au BufEnter *.org setlocal foldmethod=indent
+
