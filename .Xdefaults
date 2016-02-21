@@ -61,8 +61,12 @@ urxvt*internalBorder:   3
 urxvt*urlLauncher:      browser-wrapper.sh
 urxvt*url-launcher:     browser-wrapper.sh
 urxvt*cutchars:         `"()'*<>[]{|}
-urxvt.matcher.pattern.1: \\bwww\\.[\\w-]\\.[\\w./?&@#-]*[\\w/-]
 urxvt*matcher.button:   1
+urxvt.matcher.pattern.1: \\bwww\\.[\\w-]\\.[\\w./?&@#-]*[\\w/-]
+# clickable fs:/ipfs/QmYHNYAaYK5hm3ZhZFx5W9H6xydKDGimjdgJMrMSdnctEm
+urxvt.matcher.pattern.2: (fs:\/ip[fn]s\/[\\w./?&@#-]*[\\w/-])
+urxvt.matcher.launcher.2: browser-wrapper.sh $1
+
 #urxvt*termName:         rxvt
 URxvt*termName: screen-256color
 !
