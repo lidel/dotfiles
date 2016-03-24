@@ -18,13 +18,17 @@
 
 # MPD
 "mpc toggle"
-    Mod4 + XF86AudioMute
+    XF86AudioPlay
+
+"mpc stop"
+    XF86AudioStop
 
 "mpc prev"
-    Mod4 + XF86AudioLowerVolume
+    XF86AudioPrev
 
 "mpc next"
-    Mod4 + XF86AudioRaiseVolume
+    XF86AudioNext
+
 
 # workaround for old i3: https://github.com/i3/i3/issues/1429
 "i3 workspace prev_on_output"
