@@ -104,6 +104,8 @@ rrr () {
             find "$i" -type f -exec shred -n1 -fzuv {} \;
             rm -rf "$i"
         fi
+    echo "Syncing to disk.."
+    sync
     done
 }
 alias enman='LANG=en_GB LC_ALL=C man'
