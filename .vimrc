@@ -11,7 +11,8 @@
 " basic eye-candy
     set t_Co=256                    " force 256 term (x11-terms/rxvt-unicode +xterm-color under Gentoo)
     syntax on
-    colorscheme xoria256_modified   " http://svn.ungrund.org/system/skel/.vim/colors/xoria256.vim
+    colorscheme xoria256            " http://www.vim.org/scripts/script.php?script_id=2140
+    "colorscheme xoria256_modified   " http://svn.ungrund.org/system/skel/.vim/colors/xoria256.vim
     "colorscheme desert_modified    " http://fugal.net/vim/colors/desert.vim
     "colorscheme earendel           " pretty light theme
     "colorscheme desert256          " dark with light red and blue
@@ -180,10 +181,18 @@ command ML execute
     let g:go_highlight_operators = 1
     let g:go_highlight_build_constraints = 1
 
-" outlining
+" outlining via .org files
 au BufEnter *.org setlocal sw=2 sts=2 et
 au BufEnter *.org setlocal backspace=2
 au BufEnter *.org setlocal tw=79 formatoptions+=t
 au BufEnter *.org setlocal fo=aw2tq " paragraph auto-reflow
 au BufEnter *.org setlocal foldmethod=indent
+
+
+" vimwiki - Personal Wiki for VIM (https://vimwiki.github.io/)
+" markdown support
+let g:vimwiki_ext2syntax = {'.md': 'markdown', '.markdown': 'markdown', '.mdown': 'markdown'}
+" vim-instant-markdown - Instant Markdown previews from Vim (https://github.com/suan/vim-instant-markdown)
+"let g:instant_markdown_autostart = 0    " disable autostart
+"map <leader>md :InstantMarkdownPreview<CR>
 
