@@ -352,13 +352,15 @@ fi
 HISTFILE=${HOME}/.zsh_history
 HISTSIZE=5000
 SAVEHIST=5000
-setopt hist_ignore_dups
-setopt hist_expire_dups_first
-setopt hist_ignore_space
-setopt hist_no_store
-setopt inc_append_history
-setopt extended_history
-setopt hist_reduce_blanks
+setopt hist_ignore_dups         # Don't record an entry that was just recorded again.
+setopt hist_ignore_all_dups     # Delete old recorded entry if new entry is a duplicate.
+setopt hist_expire_dups_first   # Expire duplicate entries first when trimming history.
+setopt hist_ignore_space        # Don't record an entry starting with a space.
+setopt hist_no_store            # Don't write duplicate entries in the history file.
+setopt inc_append_history       # Write to the history file immediately, not when the shell exits.
+setopt extended_history         # Write the history file in the ":start:elapsed;command" format.
+setopt hist_reduce_blanks       # Remove superfluous blanks before recording entry.
+setopt share_history            # Share history between all sessions.
 # incognito mode
 incognito() {
     HISTFILE=/dev/null
