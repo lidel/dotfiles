@@ -6,20 +6,16 @@
 "
 "   License: CC0 (Public Domain)
 "   Updates: https://github.com/lidel/dotfiles/blob/master/.vimrc
-"
+
+" load plugins from ~/.vim/bundle
+    execute pathogen#infect()
 
 " basic eye-candy
     set t_Co=256                    " force 256 term (x11-terms/rxvt-unicode +xterm-color under Gentoo)
     syntax on
-    colorscheme xoria256            " http://www.vim.org/scripts/script.php?script_id=2140
-    "colorscheme xoria256_modified   " http://svn.ungrund.org/system/skel/.vim/colors/xoria256.vim
-    "colorscheme desert_modified    " http://fugal.net/vim/colors/desert.vim
-    "colorscheme earendel           " pretty light theme
-    "colorscheme desert256          " dark with light red and blue
-    "colorscheme Sunburst           " 256 one from https://github.com/sickill/vim-sunburst
-    "set background=dark            " i love my eyes and prefer dark background
+    set background=dark             " i love my eyes and prefer dark background
                                     " (it may be already defined in some themes)
-    "colorscheme charged-256        " universal fix for some bad themes
+    colorscheme xoria256           " http://www.vim.org/scripts/script.php?script_id=2140
 
 " Default encoding
     set termencoding=utf-8
@@ -173,13 +169,36 @@ command ML execute
     \ .' vim\:ts=4\:sw=4\:et\:@|noh|write!|edit'
 
 " golang (https://github.com/fatih/vim-go)
-    execute pathogen#infect()
+" https://github.com/fatih/vim-go-tutorial#readme
+    au FileType go let g:go_highlight_functions = 1
+    au FileType go let g:go_highlight_methods = 1
+    au FileType go let g:go_highlight_structs = 1
+    au FileType go let g:go_highlight_operators = 1
+    au FileType go let g:go_highlight_build_constraints = 1
+    au FileType go let g:go_highlight_types = 1
+    au FileType go let g:go_highlight_extra_types = 1
+    au FileType go let g:go_highlight_fields = 1
+    au FileType go let g:go_list_type = "quickfix"
+    au FileType go let g:go_fmt_command = "goimports"
+    au FileType go let g:go_metalinter_enabled = ['vet', 'golint', 'errcheck']
+    au FileType go let g:go_metalinter_autosave = 1
+    au FileType go let g:go_auto_type_info = 1
+    au FileType go let g:go_auto_sameids = 1
 
-    let g:go_highlight_functions = 1
-    let g:go_highlight_methods = 1
-    let g:go_highlight_structs = 1
-    let g:go_highlight_operators = 1
-    let g:go_highlight_build_constraints = 1
+    au BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4
+    au FileType go set autowrite
+
+    au FileType go nmap <leader>b  <Plug>(go-build)
+    au FileType go nmap <leader>r  <Plug>(go-run)
+    au FileType go nmap <leader>t  <Plug>(go-test)
+    au FileType go nmap <Leader>c <Plug>(go-coverage-toggle)
+    au FileType go map <C-n> :cnext<CR>
+    au FileType go map <C-m> :cprevious<CR>
+    au FileType go nnoremap <leader>a :cclose<CR>
+    au FileType go command! -bang A call go#alternate#Switch(<bang>0, 'edit')
+
+
+
 
 " outlining via .org files
 au BufEnter *.org setlocal sw=2 sts=2 et
