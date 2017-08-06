@@ -160,7 +160,7 @@ alias m.25="ionice -c2 -n0 mpv -speed 1.25"
 
 alias e="emerge"
 alias v="vim"
-alias a="aria2c"
+alias a="nice -n 20 chrt -i 0 ionice -c3 aria2c"
 
 alias ytget="youtube-dl -t" # downloads yt video and saves it under meaningful filename
 yt () {
