@@ -12,4 +12,4 @@ echo '[],'
 
 # Now send blocks with information forever:
 # Note: " in mpd song titles breaks JSON -- escape it via sed)
-exec conky -c $HOME/.i3/conkyrc | sed -ur 's/: \"(.*)\"(.*)\",/: \"\1\\"\2\",/g'
+exec conky -c $HOME/.i3/conkyrc-$(hostname).lua | sed -ur 's/: \"(.*)\"(.*)\",/: \"\1\\"\2\",/g'
