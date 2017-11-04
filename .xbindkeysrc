@@ -1,9 +1,9 @@
 # Lock
-"i3lock -d -e -f -c 000000"
+"i3lock -e -f -c 000000"
     Mod4 + Escape
 
 # Lock + Sleep
-"i3lock -d -e -f -c 000000 && sudo pm-suspend"
+"i3lock -e -f -c 000000 && sudo pm-suspend"
     Shift+Mod4 + Escape
 
 # Volume
@@ -36,3 +36,11 @@
 
 "i3 workspace next_on_output"
     b:9
+
+# workaround for a laptop without pgup
+"xdotool key Page_Up"
+    Shift + Prior
+
+# workaround for a laptop without pgdown
+"xdotool key Page_Down"
+    Shift + Next
