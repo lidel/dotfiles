@@ -36,9 +36,13 @@ zstyle ':vcs_info:*' enable git
 }
 precmd () { vcs_info }
 
-# I want to see hostname unless I am on my workstation (dybuk)
-if [[ $HOST != 'dybuk' ]]; then
-    PR_HOST=$HOST
+# I want to see hostname only for remote sessions
+if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
+	PR_HOST=$HOST
+else
+  case $(ps -o comm= -p $PPID) in
+    sshd|*/sshd) PR_HOST=$HOST;;
+  esac
 fi
 
 # Decide if we need to set titlebar text.
