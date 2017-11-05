@@ -177,6 +177,21 @@ ffmpeg-dlna () {
     done
 }
 
+# GIT
+
+alias g='git'
+alias ga='git add'
+alias gd='git d'
+alias gdw='git dw'
+alias gcs='git commit -S'
+alias gap='git add --all --patch'
+alias gst='git st'
+alias st='git st'
+alias glg='git lg'
+alias gf='git fetch'
+alias gup='git up'
+alias gus='git unstage'
+
 
 # global aliases -- These do not have to be
 # at the beginning of the command line.
