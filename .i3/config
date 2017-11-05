@@ -208,6 +208,8 @@ for_window [instance="urxvt"] border 1pixel
 for_window [class="mplayer"]    floating enable, border none
 for_window [class="mplayer2"]   floating enable, border none
 for_window [class="mpv"]        floating enable, border none
+# editors
+for_window [class="Atom"] border none
 # browser
 for_window [class="Firefox" instance="Navigator"] border none
 for_window [class="Firefox" instance="^(?!Navigator$)"] floating enable, border normal
