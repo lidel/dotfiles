@@ -215,3 +215,7 @@ let g:vimwiki_ext2syntax = {'.md': 'markdown', '.markdown': 'markdown', '.mdown'
 "let g:instant_markdown_autostart = 0    " disable autostart
 "map <leader>md :InstantMarkdownPreview<CR>
 
+" GIT Gutter support via https://vimawesome.com/plugin/vim-gitgutter
+let g:gitgutter_diff_args = '-w' " ignore whitespace
+set updatetime=250 " diff markers should appear automatically, but  default value is 4000ms
+
