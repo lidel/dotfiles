@@ -219,3 +219,4 @@ for_window [class="pinentry"] floating enable, border normal
 for_window [window_role="pop-up"] floating enable, border normal
 for_window [window_role="task_dialog"] floating enable, border normal
 for_window [title="Preferences$"] floating enable, border normal
+for_window [class="zoom"] floating enable, border normal
