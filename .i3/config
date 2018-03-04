@@ -214,9 +214,15 @@ for_window [class="Atom"] border none
 for_window [class="Firefox" instance="Navigator"] border none
 for_window [class="Firefox" instance="^(?!Navigator$)"] floating enable, border normal
 for_window [class="Firefox" instance="Devtools"] floating disable, border normal
-# floats
-for_window [class="pinentry"] floating enable, border normal
+# floats (generic)
 for_window [window_role="pop-up"] floating enable, border normal
+for_window [window_role="bubble"] floating enable, border normal
 for_window [window_role="task_dialog"] floating enable, border normal
+for_window [window_role="Preferences"] floating enable, border normal
+for_window [window_type="dialog"] floating enable, border normal
+for_window [window_type="menu"] floating enable, border normal
+# floats (specific)
+for_window [class="pinentry"] floating enable, border normal
 for_window [title="Preferences$"] floating enable, border normal
 for_window [class="zoom"] floating enable, border normal
+for_window [class="Peek"] floating enable, border normal
