@@ -150,6 +150,7 @@
 " custom indents
     let g:html_indent_inctags = "html,body,head,tbody"
     autocmd FileType javascript setlocal sw=2 sts=2 et
+    autocmd FileType css        setlocal sw=2 sts=2 et
     autocmd FileType html       setlocal sw=2 sts=2 et
     autocmd FileType ruby       setlocal sw=2 sts=2 et
 
@@ -219,3 +220,5 @@ let g:vimwiki_ext2syntax = {'.md': 'markdown', '.markdown': 'markdown', '.mdown'
 let g:gitgutter_diff_args = '-w' " ignore whitespace
 set updatetime=250 " diff markers should appear automatically, but  default value is 4000ms
 
+" tailing fixes
+set viminfo='100,<1000,s1000,h   " max buffer saved for each register
