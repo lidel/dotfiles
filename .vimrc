@@ -42,7 +42,7 @@
     set spelllang=pl                " default to polish
     set ttyfast                     " assume fast terminal connection
     set scrolloff=5                 " keep 3 lines below and above the cursor
-    set sidescrolloff=10            " keep 5 lines at the size
+    set sidescrolloff=5             " keep 5 lines at the size
     set ruler                       " row / column of cursor
     set modeline                    " last lines in document sets vim mode
     set modelines=3                 " number lines checked for modelines
@@ -66,6 +66,14 @@
     set showmatch                   " show matching brackets
     set matchtime=5                 " how many tenths of a second to blink
                                     " matching brackets for
+" Default line number modes
+    set number relativenumber
+    augroup numbertoggle
+        " idea credit: https://jeffkreeftmeijer.com/vim-number/
+        autocmd!
+        autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
+        autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
+    augroup END
 " Default identation settings
     set expandtab                   " use spaces as tabs
     set softtabstop=4               " use 4 softtabstops
@@ -89,7 +97,7 @@
 " Keybindings
     set backspace=indent,eol,start      " make backspace a more flexible
     nnoremap    <F2> :set list!<CR>     " F2: Toggle list (display unprintable characters).
-    nmap        <F5> :set nu!<CR>       " toggle line numbers
+    nmap        <F5> :set nu! relativenumber!<CR>  " toggle hybrid line numbers
 
     fun RmCR()
         set fileformats=unix            " to see those ^M while editing a dos file.
