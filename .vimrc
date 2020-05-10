@@ -1,7 +1,7 @@
 "   .vimrc
 "   by Marcin Rataj (http://lidel.org)
 "
-"   Compiled from manual and external sources over last decade.
+"   Compiled from manual and external sources over decades.
 "   Feel free to use it as a reference or base of your own .vimrc.
 "
 "   License: CC0 (Public Domain)
@@ -63,6 +63,9 @@
                                     " Highlight redundant whitespaces
     highlight RedundantSpaces ctermbg=blue guibg=blue
     match RedundantSpaces /\s\+$\| \+\ze\t/
+                                    " Highlight 80 column
+    set colorcolumn=80
+    highlight ColorColumn ctermbg=233
     set showmatch                   " show matching brackets
     set matchtime=5                 " how many tenths of a second to blink
                                     " matching brackets for
@@ -163,19 +166,42 @@
     autocmd FileType ruby       setlocal sw=2 sts=2 et
 
 " vim modeline
-    autocmd FileType javascript let b:TheCommentThing='//'
-    autocmd FileType     python let b:TheCommentThing='#'
-    autocmd FileType        cpp let b:TheCommentThing='//'
-    autocmd FileType          c let b:TheCommentThing='//'
-    autocmd FileType       bash let b:TheCommentThing='#'
-    autocmd FileType         sh let b:TheCommentThing='#'
-    autocmd FileType       html let b:TheCommentThing='##'
-    autocmd FileType        css let b:TheCommentThing='/*'
+" https://github.com/sk4zuzu/dotfiles/blob/ffea1b2827c1966b165346887e3fb0034e872aca/asd/.vimrc
+let g:default_modeline = '# vim:ts=4:sw=4:et:'
 
-command ML execute
-    \ '$s@$@\r'
-    \ .(exists('b:TheCommentThing') ? b:TheCommentThing : '')
-    \ .' vim\:ts=4\:sw=4\:et\:@|noh|write!|edit'
+fu! s:MakeModeline(...)
+    let p = [ 'ts=' . &ts,
+            \ 'sw=' . &sw,
+            \ (&et ? 'et' : 'noet'),
+            \ 'syn=' . &syn ]
+    if a:0 == 0
+        let b:effective_modeline = g:default_modeline
+    else
+        if a:0 > 1
+            let b:effective_modeline = a:1 . ' vim:set ' . join(p, ' ') . ': ' . a:2
+        else
+            let b:effective_modeline = a:1 . ' vim:' . join(p, ':') . ':'
+        endif
+    endif
+endfu
+
+autocmd BufNewFile,BufRead *.nix set filetype=nix
+autocmd BufNewFile,BufRead *.hcl set filetype=terraform
+
+autocmd FileType          c set ts=4 sw=4 et   | call s:MakeModeline('//')
+autocmd FileType        cpp set ts=4 sw=4 et   | call s:MakeModeline('//')
+autocmd FileType        css set ts=2 sw=2 et   | call s:MakeModeline('/*', '*/')
+autocmd FileType javascript set ts=2 sw=2 et   | call s:MakeModeline('//')
+autocmd FileType dockerfile set ts=2 sw=2 et   | call s:MakeModeline('#')
+autocmd FileType       json set ts=2 sw=2 et
+autocmd FileType       make set ts=4 sw=4 noet | call s:MakeModeline('#')
+autocmd FileType   markdown set ts=2 sw=2 et   | call s:MakeModeline('[//]: # (', ')')
+autocmd FileType        nix set ts=2 sw=2 et   | call s:MakeModeline('#')
+autocmd FileType     python set ts=4 sw=4 et   | call s:MakeModeline('#')
+autocmd FileType         sh set ts=4 sw=4 et   | call s:MakeModeline('#')
+autocmd FileType  terraform set ts=2 sw=2 et   | call s:MakeModeline('#')
+autocmd FileType        vim set ts=4 sw=4 et   | call s:MakeModeline('"')
+autocmd FileType       yaml set ts=2 sw=2 et   | call s:MakeModeline('#')
 
 " golang (https://github.com/fatih/vim-go)
 " https://github.com/fatih/vim-go-tutorial#readme
@@ -230,3 +256,5 @@ set updatetime=250 " diff markers should appear automatically, but  default valu
 
 " tailing fixes
 set viminfo='100,<1000,s1000,h   " max buffer saved for each register
+
+" vim:ts=4:sw=4:et:syn=vim:
