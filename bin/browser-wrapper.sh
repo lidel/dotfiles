@@ -25,5 +25,4 @@ notify-send -u low -i $icon -h string:x-canonical-append:browser "Opening URL" "
 # try xremote first
 $firefox -new-tab "$URL" && exit 0
 # if xremote failed, then launch the browser
-$firefox "$URL"
-
+exec $firefox "$URL"

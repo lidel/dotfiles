@@ -155,11 +155,14 @@ alias d='dirs -v'
 alias c="cd ~ ; clear"
 #m () { xset s off ; ionice -c2 -n0 mplayer2 "$@" ; xset s on }
 alias m="ionice -c2 -n0 mpv"
-alias m.25="ionice -c2 -n0 mpv -speed 1.25"
+alias m.x1.25="ionice -c2 -n0 mpv -speed 1.25"
+alias m.x1.50="ionice -c2 -n0 mpv -speed 1.50"
+alias m.x1.75="ionice -c2 -n0 mpv -speed 1.75"
+alias m.x2.00="ionice -c2 -n0 mpv -speed 2.00"
 #alias m-fs="ionice -c2 -n0 mplayer2 -fs -heartbeat-cmd 'xscreensaver-command -deactivate'"
 
 alias e="emerge"
-alias v="vim"
+alias v="nvim"
 alias a="nice -n 20 chrt -i 0 ionice -c3 aria2c"
 
 alias ytget="youtube-dl -t" # downloads yt video and saves it under meaningful filename
