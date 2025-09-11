@@ -49,7 +49,7 @@ conky.text = [[
 ${if_mpd_playing}
   {
     "full_text": "♪ $mpd_artist – $mpd_title",
-    "color": "\#909090"
+    "color": "\#a89984"
   },
 ${endif}
 ${if_up eth0}
@@ -57,12 +57,12 @@ ${if_up eth0}
     "full_text": "${downspeedf eth0}↓",
     "color":
     ${if_match ${downspeedf eth0}>1000}
-        "\#E84F4F"
+        "\#d79921"
     ${else}
         ${if_match ${downspeedf eth0}>10}
-            "\#24927F"
+            "\#98971a"
         ${else}
-            "\#909090"
+            "\#a89984"
         ${endif}
     ${endif}
   },
@@ -70,12 +70,12 @@ ${if_up eth0}
     "full_text": "${upspeedf eth0}↑",
     "color":
     ${if_match ${upspeedf eth0}>1000}
-        "\#E84F4F"
+        "\#d79921"
     ${else}
         ${if_match ${upspeedf eth0}>10}
-            "\#24927F"
+            "\#d79921"
         ${else}
-            "\#909090"
+            "\#a89984"
         ${endif}
     ${endif}
   },
@@ -83,18 +83,18 @@ ${endif}
 ${if_up wlan0}
   {
     "full_text": "≈ ${wireless_essid wlan0}[${wireless_link_qual_perc wlan0}%]"
-    "color": "\#909090"
+    "color": "\#a89984"
   },
   {
     "full_text": "${downspeedf wlan0}↓",
     "color":
     ${if_match ${downspeedf wlan0}>1000}
-        "\#E84F4F"
+        "\#cc241d"
     ${else}
         ${if_match ${downspeedf wlan0}>10}
-            "\#24927F"
+            "\#d79921"
         ${else}
-            "\#909090"
+            "\#a89984"
         ${endif}
     ${endif}
   },
@@ -102,30 +102,30 @@ ${if_up wlan0}
     "full_text": "${upspeedf wlan0}↑",
     "color":
     ${if_match ${upspeedf wlan0}>1000}
-        "\#E84F4F"
+        "\#cc241d"
     ${else}
         ${if_match ${upspeedf wlan0}>10}
-            "\#24927F"
+            "\#98971a"
         ${else}
-            "\#909090"
+            "\#a89984"
         ${endif}
     ${endif}
   },
 ${endif}
   {
     "full_text": "♪ ${exec amixer get Master | grep "Front Left:" | awk '{print $5}' | sed 's:^.\(.*\).$:\1:'}",
-    "color": "\#909090"
+    "color": "\#a89984"
   },
   {
     "full_text": "≣ ${memperc}%",
     "color":
     ${if_match ${memperc}>50}
-        "\#E84F4F"
+        "\#cc241d"
     ${else}
         ${if_match ${memperc}>85}
-            "\#4FE84F"
+            "\#d79921"
         ${else}
-            "\#909090"
+            "\#a89984"
         ${endif}
     ${endif}
   },
@@ -133,35 +133,35 @@ ${endif}
     "full_text": "${acpitemp}℃",
     "color":
       ${if_match ${acpitemp}>65}
-        "\#E84F4F"
+        "\#cc241d"
       ${else}
-        "\#909090"
+        "\#a89984"
       ${endif}
   },
   {
     "full_text": "${loadavg 1}",
     "color":
-    ${if_match ${loadavg 1}>4}
-        "\#E84F4F"
+    ${if_match ${loadavg 1}>8}
+        "\#cc241d"
     ${else}
-        ${if_match ${loadavg 1}>1}
-            "\#4FE84F"
+        ${if_match ${loadavg 1}>4}
+            "\#d79921"
         ${else}
-            "\#909090"
+            "\#a89984"
         ${endif}
     ${endif}
   },
   {
     "full_text": "${loadavg 2} ${loadavg 3}",
-    "color": "\#909090"
+    "color": "\#a89984"
   },
   {
     "full_text": "${time %Y-%m-%d}",
-    "color": "\#909090"
+    "color": "\#a89984"
   },
   {
     "full_text": "${time %H:%M:%S}",
-    "color": "\#C0C0C0"
+    "color": "\#ebdbb2"
   },
   {
     "full_text": ""

@@ -11,8 +11,8 @@ set $mod Mod4
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
-font pango:DejaVu Sans Mono 8
-#font pango:Envy Code R 8
+#font pango:DejaVu Sans Mono 8
+font pango:Envy Code R 10
 #font xft:DejaVu Sans Mono:pixelsize=8
 
 # Before i3 v4.8, we used to recommend this one as the default:
@@ -26,14 +26,18 @@ font pango:DejaVu Sans Mono 8
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec urxvtc-wrapper.sh
-bindsym $mod+grave  exec urxvtc-wrapper.sh
+bindsym $mod+Return exec alacritty
+bindsym $mod+grave  exec alacritty
 
 # kill focused window
 bindsym $mod+Shift+q kill
 
+# emoji picker (hello fellow kids)
+bindsym $mod+slash exec "splatmoji -s light type"
+#bindsym $mod+slash exec "splatmoji -s none type"
+
 # start dmenu (a program launcher)
-bindsym $mod+d exec dmenu_run -sb '#315858' -sf '#ffffff' -fn 'xft:Envy Code R:size=10'
+bindsym $mod+d exec dmenu_run -sf '#1d2021' -sb '#ebdbb2' -fn 'Envy Code R-11'
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
@@ -161,18 +165,29 @@ bindsym --whole-window button9 workspace next_on_output
 # Middle button with modifier open first empty workspace
 bindsym --whole-window $mod+button2 exec ~/.i3/i3-find-empty-workspace
 
+# Move the workspace or window to the next output
+bindsym $mod+Shift+o move workspace to output next
+bindsym --whole-window $mod+Shift+button2 move window to output next
+
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-        #mode hide
+        # show only when Mod key is pressed
+        mode dock
+        # show at the top, so it takes the same space as optional titlebars
         position bottom
+        # tray icons on the main screen
+        tray_output primary
+        # if we ever switch to show it all the time, then only show on primary one
+        #output primary
+
         separator_symbol ":"
         status_command $HOME/.i3/conky-i3bar
         colors {
             #                  border  bg      text
-            focused_workspace  #000000 #000000 #ffffff
-            active_workspace   #000000 #000000 #eeeeee
-            inactive_workspace #000000 #000000 #888888
+            focused_workspace  #000000 #000000 #ebdbb2
+            active_workspace   #000000 #1d2021 #eeeeee
+            inactive_workspace #000000 #000000 #665c54
         }
 }
 
@@ -194,9 +209,9 @@ bindsym $mod+b border toggle
 
 # Colors
 #                         border  bg      text    indicator
-client.focused            #315858 #315858 #111111 #2e9ef4
-client.focused_inactive   #2c2e2f #2c2e2f #315858 #484e50
-client.unfocused          #2c2e2f #2c2e2f #444444 #292d2e
+client.focused            #665c54 #665c54 #111111 #8ec07c
+client.focused_inactive   #282828 #282828 #665c54 #484e50
+client.unfocused          #282828 #282828 #444444 #689d6a
 client.urgent             #383a3b #383a3b #ee0000 #900000
 client.placeholder        #000000 #0c0c0c #ffffff #000000
 
@@ -227,3 +242,16 @@ for_window [title="Preferences$"] floating enable, border normal
 for_window [class="zoom"] floating enable, border normal
 for_window [class="Peek"] floating enable, border normal
 for_window [class="flameshot"] floating enable, border normal
+for_window [class="IPFS Desktop"] floating enable, border normal
+
+# https://github.com/ValveSoftware/steam-for-linux/issues/1040
+for_window [class="^Steam$" title="^Friends$"] floating enable
+for_window [class="^Steam$" title="Steam - News"] floating enable
+for_window [class="^Steam$" title=".* - Chat"] floating enable
+for_window [class="^Steam$" title="^Settings$"] floating enable
+for_window [class="^Steam$" title=".* - event started"] floating enable
+for_window [class="^Steam$" title=".* CD key"] floating enable
+for_window [class="^Steam$" title="^Steam - Self Updater$"] floating enable
+for_window [class="^Steam$" title="^Screenshot Uploader$"] floating enable
+for_window [class="^Steam$" title="^Steam Guard - Computer Authorization Required$"] floating enable
+for_window [title="^Steam Keyboard$"] floating enable
