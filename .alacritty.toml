@@ -1,0 +1,65 @@
+[colors.bright]
+black = "#928374"
+blue = "#83a598"
+cyan = "#8ec07c"
+green = "#b8bb26"
+magenta = "#d3869b"
+red = "#fb4934"
+white = "#ebdbb2"
+yellow = "#fabd2f"
+
+[colors.dim]
+black = "#32302f"
+blue = "#076678"
+cyan = "#427b58"
+green = "#79740e"
+magenta = "#8f3f71"
+red = "#9d0006"
+white = "#928374"
+yellow = "#b57614"
+
+[colors.normal]
+black = "#1d2021"
+blue = "#458588"
+cyan = "#689d6a"
+green = "#98971a"
+magenta = "#b16286"
+red = "#cc241d"
+white = "#a89984"
+yellow = "#d79921"
+
+[colors.primary]
+background = "#1d2021"
+bright_foreground = "#f9f5d7"
+dim_foreground = "#f2e5bc"
+foreground = "#fbf1c7"
+
+[env]
+TERM = "xterm-256color"
+
+[font]
+size = 9
+normal.family = "Envy Code R"
+builtin_box_drawing = true  # Better box drawing characters
+
+[[hints.enabled]]
+command = "browser-wrapper.sh"
+hyperlinks = true
+post_processing = true
+regex = "(https?://|git://|ssh://|ftp://|ipfs:|ipns:|mailto:)[^\u0000-\u001F\u007F-\u009F<>\"\\s{-}\\^⟨⟩`\\\\]+"
+mouse.enabled = true
+binding = { key = "U", mods = "Control|Shift" }
+
+[[keyboard.bindings]]
+action = "SpawnNewInstance"
+key = "Return"
+mods = "Control|Shift"
+
+
+[window]
+dynamic_padding = true
+dynamic_title = true
+padding = { x = 4, y = 4 }
+decorations = "Full"  # Keep default - i3 will strip title bar anyway
+startup_mode = "Windowed"  # Let i3 manage window placement
+resize_increments = true  # Resize by cell size, prevents partial characters
