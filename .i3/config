@@ -36,6 +36,9 @@ bindsym $mod+Shift+q kill
 bindsym $mod+slash exec "splatmoji -s light type"
 #bindsym $mod+slash exec "splatmoji -s none type"
 
+# screenshot tool
+bindsym Print exec flameshot gui
+
 # start dmenu (a program launcher)
 bindsym $mod+d exec dmenu_run -sf '#1d2021' -sb '#ebdbb2' -fn 'Envy Code R-11'
 # There also is the (new) i3-dmenu-desktop which only displays applications
