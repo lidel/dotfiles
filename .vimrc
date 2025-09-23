@@ -13,12 +13,13 @@
 " basic eye-candy
     set t_Co=256                    " force 256 term (x11-terms/rxvt-unicode +xterm-color under Gentoo)
     syntax on
-    set background=dark             " i love my eyes and prefer dark background
+    "set background=dark             " i love my eyes and prefer dark background
                                     " (it may be already defined in some themes)
-    colorscheme xoria256           " http://www.vim.org/scripts/script.php?script_id=2140
+    let g:gruvbox_contrast_dark = 'hard'
+    colorscheme gruvbox             " https://github.com/gruvbox-community/gruvbox
 
 " Default encoding
-    set termencoding=utf-8
+"    set termencoding=utf-8
     set fileencoding=utf-8
     set encoding=utf-8
 
@@ -50,7 +51,7 @@
     set confirm                     " to get a dialog when a command fails
     set shell=zsh
     set listchars=tab:>-,trail:.,eol:$  " chars to show for :set list -> <F5>
-    set guitablabel=%N/\ %t\ %M     " tab labels show the filename without path
+    "set guitablabel=%N/\ %t\ %M     " tab labels show the filename without path
     set cursorline                  " highlight the current column
     "set cursorcolumn                " highlight the current column
     set lazyredraw                  " do not redraw while running macros
@@ -110,7 +111,7 @@
     endfun
     "map         <F6> :call RmCR()<CR>  " ^M removal
 
-    set         pastetoggle=<F11>       " pastetoggle - this toggles 'paste'
+    "set         pastetoggle=<F11>       " pastetoggle - this toggles 'paste'
     nmap        <F7> :set spell!<CR>    " toggle spellcheck
 
 " Small macros and fixes
@@ -215,8 +216,8 @@ autocmd FileType       yaml set ts=2 sw=2 et   | call s:MakeModeline('#')
     au FileType go let g:go_highlight_fields = 1
     au FileType go let g:go_list_type = "quickfix"
     au FileType go let g:go_fmt_command = "goimports"
-    au FileType go let g:go_metalinter_enabled = ['vet', 'golint', 'errcheck']
-    au FileType go let g:go_metalinter_autosave = 1
+    "au FileType go let g:go_metalinter_enabled = ['vet', 'golint', 'errcheck']
+    "au FileType go let g:go_metalinter_autosave = 1
     au FileType go let g:go_auto_type_info = 1
     au FileType go let g:go_auto_sameids = 1
 
@@ -243,12 +244,80 @@ au BufEnter *.org setlocal fo=aw2tq " paragraph auto-reflow
 au BufEnter *.org setlocal foldmethod=indent
 
 
-" vimwiki - Personal Wiki for VIM (https://vimwiki.github.io/)
-" markdown support
-let g:vimwiki_ext2syntax = {'.md': 'markdown', '.markdown': 'markdown', '.mdown': 'markdown'}
-" vim-instant-markdown - Instant Markdown previews from Vim (https://github.com/suan/vim-instant-markdown)
-"let g:instant_markdown_autostart = 0    " disable autostart
-"map <leader>md :InstantMarkdownPreview<CR>
+
+
+" markdown rendering for Neovim (backward compatible)
+if has('nvim')
+    " Use same style for markdown links as HTML links
+    autocmd ColorScheme * highlight! link RenderMarkdownLink htmlLink
+    autocmd ColorScheme * highlight! link @markup.link htmlLink
+    autocmd ColorScheme * highlight! link @markup.link.url htmlLink
+    " Apply immediately for current colorscheme
+    highlight! link RenderMarkdownLink htmlLink
+    highlight! link @markup.link htmlLink
+    highlight! link @markup.link.url htmlLink
+
+    " render-markdown.nvim - https://github.com/MeanderingProgrammer/render-markdown.nvim
+    " Only loads in Neovim, old Vim will skip this
+    lua << EOF
+    -- Check if render-markdown plugin exists before configuring
+    local ok, render_markdown = pcall(require, 'render-markdown')
+    if ok then
+        render_markdown.setup({
+            -- Basic configuration
+            enabled = true,
+            render_modes = { 'n', 'c' },
+            -- Optional: customize appearance
+            heading = {
+                enabled = true,
+                sign = true,
+                position = 'overlay',
+            },
+            code = {
+                enabled = true,
+                sign = true,
+                position = 'left',
+            },
+            bullet = {
+                enabled = true,
+                icons = { '●', '○', '◆', '◇' },
+            },
+            -- Quote rendering (needed for callouts to work)
+            quote = {
+                enabled = true,
+                icon = '▎',
+                repeat_linebreak = false,
+                highlight = 'RenderMarkdownQuote',
+            },
+            -- Disable LaTeX since parser is not installed
+            latex = {
+                enabled = false,
+            },
+            -- Link configuration
+            link = {
+                enabled = true,
+                highlight = 'RenderMarkdownLink',
+            },
+        })
+    end
+
+    -- Treesitter configuration
+    local ts_ok, configs = pcall(require, 'nvim-treesitter.configs')
+    if ts_ok then
+        configs.setup({
+            ensure_installed = { },  -- We'll install manually with TSInstall
+            highlight = {
+                enable = true,
+                additional_vim_regex_highlighting = false,
+            },
+        })
+    end
+EOF
+    let g:polyglot_disabled = ['markdown']
+else
+    " For old Vim, disable polyglot markdown to avoid conflicts
+    let g:polyglot_disabled = ['markdown']
+endif
 
 " GIT Gutter support via https://vimawesome.com/plugin/vim-gitgutter
 let g:gitgutter_diff_args = '-w' " ignore whitespace
