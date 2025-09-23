@@ -39,7 +39,8 @@ TERM = "xterm-256color"
 
 [font]
 size = 9
-normal.family = "Envy Code R"
+#normal.family = "Envy Code R"
+normal.family = "EnvyCodeR Nerd Font" # https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/EnvyCodeR
 builtin_box_drawing = true  # Better box drawing characters
 
 [[hints.enabled]]

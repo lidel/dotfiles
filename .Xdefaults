@@ -14,86 +14,39 @@ Xft.hinting:        true
 Xft.hintstyle:      hintfull
 Xft.lcdfilter:      lcddefault
 Xft.rgba:           rgb
-
-
-! urxvt is my terminal of choice (http://goo.gl/reh0)
-urxvt*perl-ext-common:  selection-autotransform,matcher
-
-urxvt*foreground:   #dCdCdC
-urxvt*cursorColor:  #c0c0c0
-urxvt*background:   #1C1C1C
-
-#XTerm*boldColors:   true
-#XTerm*colorBDMode:  true
-#XTerm*colorULMode:  true
-
-! font
-urxvt*font:        xft:Envy Code R:size=10
-#urxvt*font:        xft:Anonymous Pro:size=10
-#URxvt*font:        xft:Bitstream Vera Sans Mono:pixelsize=11
-#URxvt*font:        xft:Inconsolata:pixelsize=10
-#Urxvt*font:        xft:Monospace:pixelsize=13:antialias=true:hinting=true
-#URxvt*boldFont:    xft:Monospace:pixelsize=13:antialias=true:bold:hinting=true
-#urxvt*font:        -*-terminus-medium-r-*-*-14-*-*-*-*-*-iso10646-*
-#urxvt*boldFont:    -*-terminus-bold-r-*-*-14-*-*-*-*-*-iso10646-*
-#urxvt*font:        -*-terminus-medium-r-*-*-12-*-*-*-*-*-iso10646-*
-#urxvt*boldFont:    -*-terminus-bold-r-*-*-12-*-*-*-*-*-iso10646-*
-#urxv*font: -*-fixed-medium-r-*-*-14-*-*-*-*-*-*-*
-#URxvt*font: xft:Bitstream Vera Sans Mono:pixelsize=12
-
-! cycle font sizes with ctrl+alt+1-6
-URxvt.keysym.C-1: command:\033]710;xft:Envy Code R:size=10\007
-URxvt.keysym.C-2: command:\033]710;xft:Envy Code R:size=12\007
-URxvt.keysym.C-3: command:\033]710;xft:Envy Code R:size=14\007
-URxvt.keysym.C-4: command:\033]710;xft:Envy Code R:size=20\007
-URxvt.keysym.C-5: command:\033]710;xft:Envy Code R:size=26\007
-URxvt.keysym.C-6: command:\033]710;xft:Envy Code R:size=36\007
-
-! transparency policy
-urxvt.inheritPixmap:    true
-urxvt.shading:          10 !trans, 0=opaque
-urxvt.fading:           20 !term unfocus
-
-! other
-urxvt*saveLines:        2535
-urxvt*cursorBlink:      true
-urxvt*internalBorder:   3
-urxvt*urlLauncher:      browser-wrapper.sh
-urxvt*url-launcher:     browser-wrapper.sh
-urxvt*cutchars:         `"()'*<>[]{|}
-urxvt*matcher.button:   1
-urxvt.matcher.pattern.1: \\bwww\\.[\\w-]\\.[\\w./?&@#-]*[\\w/-]
-# clickable fs:/ipfs/QmYHNYAaYK5hm3ZhZFx5W9H6xydKDGimjdgJMrMSdnctEm
-urxvt.matcher.pattern.2: (fs:\/ip[fn]s\/[\\w./?&@#-]*[\\w/-])
-urxvt.matcher.launcher.2: browser-wrapper.sh $1
-
-#urxvt*termName:         rxvt
-URxvt*termName: screen-256color
-!
-urxvt.urgentOnBell:     true
-urxvt*scrollBar:        false
-urxvt.scrollTtyOutput:  false
-urxvt*titeInhibit:      true
-urxvt.imLocale:	        pl_PL.utf8
-urxvt.scrollTtyKeypress: false
 xterm*utf8:             1
 
-! Tango color theme
-#urxvt*color0:  rgb:2e2e/3434/3636
-urxvt*color1:  rgb:cccc/0000/0000
-urxvt*color2:  rgb:4e4e/9a9a/0606
-urxvt*color3:  rgb:c4c4/a0a0/0000
-urxvt*color4:  rgb:3434/6565/a4a4
-urxvt*color5:  rgb:7575/5050/7b7b
-urxvt*color6:  rgb:0606/9820/9a9a
-urxvt*color7:  rgb:d3d3/d7d7/cfcf
-urxvt*color8:  rgb:5555/5757/5353
-urxvt*color9:  rgb:efef/2929/2929
-urxvt*color10: rgb:8a8a/e2e2/3434
-urxvt*color11: rgb:fcfc/e9e9/4f4f
-urxvt*color12: rgb:7272/9f9f/cfcf
-urxvt*color13: rgb:adad/7f7f/a8a8
-urxvt*color14: rgb:3434/e2e2/e2e2
-urxvt*color15: rgb:eeee/eeee/ecec
-urxvt*highlightColor:#404040
+## Color theme: gruvbox
+XTerm*termName:     xterm-256color
 
+# https://github.com/morhetz/gruvbox-contrib/blob/master/xresources/gruvbox-dark.xresources
+
+! hard contrast: *background: #1d2021
+! med contrast: *background:  #282828
+! soft contrast: *background: #32302f
+*background: #1d2021
+*foreground: #ebdbb2
+! Black + DarkGrey
+*color0:  #282828
+*color8:  #928374
+! DarkRed + Red
+*color1:  #cc241d
+*color9:  #fb4934
+! DarkGreen + Green
+*color2:  #98971a
+*color10: #b8bb26
+! DarkYellow + Yellow
+*color3:  #d79921
+*color11: #fabd2f
+! DarkBlue + Blue
+*color4:  #458588
+*color12: #83a598
+! DarkMagenta + Magenta
+*color5:  #b16286
+*color13: #d3869b
+! DarkCyan + Cyan
+*color6:  #689d6a
+*color14: #8ec07c
+! LightGrey + White
+*color7:  #a89984
+*color15: #ebdbb2
