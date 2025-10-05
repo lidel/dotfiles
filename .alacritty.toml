@@ -29,16 +29,23 @@ white = "#a89984"
 yellow = "#d79921"
 
 [colors.primary]
-background = "#1d2021"
-bright_foreground = "#f9f5d7"
-dim_foreground = "#f2e5bc"
-foreground = "#fbf1c7"
+# Gruvbox Material Dark Medium (default)
+background = "#282828"
+foreground = "#d4be98"
+
+# Gruvbox Material Dark Hard (highest contrast)
+#background = "#1d2021"
+#foreground = "#d4be98"
+
+# Gruvbox Material Dark Soft (softest background)
+#background = "#32302f"
+#foreground = "#d4be98"
 
 [env]
 TERM = "xterm-256color"
 
 [font]
-size = 9
+size = 8
 #normal.family = "Envy Code R"
 normal.family = "EnvyCodeR Nerd Font" # https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/EnvyCodeR
 builtin_box_drawing = true  # Better box drawing characters

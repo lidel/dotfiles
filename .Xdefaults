@@ -7,11 +7,11 @@
 
 Xcursor.theme:      Neutral_Plus
 ! xft
-Xft.dpi:            96
+Xft.dpi:            140
 Xft.antialias:      true
 Xft.autohint:       false
 Xft.hinting:        true
-Xft.hintstyle:      hintfull
+Xft.hintstyle:      hintslight
 Xft.lcdfilter:      lcddefault
 Xft.rgba:           rgb
 xterm*utf8:             1
