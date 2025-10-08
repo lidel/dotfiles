@@ -1,16 +1,13 @@
 #!/bin/bash
-# PulseAudio [up|down|mute] controls for default sink
+# PulseAudio/PipeWire [up|down|mute] controls for default sink
 # Updates: http://github.com/lidel/dotfiles/
 
 getdefaultsinkname() {
-    pacmd stat |
-    awk -F": " '/^Default sink name: /{print $2}'
+    pactl get-default-sink
 }
 
 getdefaultsinkvol() {
-    pacmd list-sinks |
-    grep -A 10 "name: <$(getdefaultsinkname)>" |
-    grep volume: |
+    pactl get-sink-volume @DEFAULT_SINK@ |
     grep -m1 -o -E '[[:digit:]]+%' |
     sed 's/%//' --
 }
