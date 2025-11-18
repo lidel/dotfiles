@@ -186,6 +186,9 @@ bar {
 
         separator_symbol ":"
         status_command $HOME/.i3/conky-i3bar
+        # disable mouse wheel workspace switching
+        wheel_up_cmd nop
+        wheel_down_cmd nop
         colors {
             #                  border  bg      text
             focused_workspace  #000000 #000000 #ebdbb2
@@ -248,13 +251,8 @@ for_window [class="flameshot"] floating enable, border normal
 for_window [class="IPFS Desktop"] floating enable, border normal
 
 # https://github.com/ValveSoftware/steam-for-linux/issues/1040
-for_window [class="^Steam$" title="^Friends$"] floating enable
-for_window [class="^Steam$" title="Steam - News"] floating enable
-for_window [class="^Steam$" title=".* - Chat"] floating enable
-for_window [class="^Steam$" title="^Settings$"] floating enable
-for_window [class="^Steam$" title=".* - event started"] floating enable
-for_window [class="^Steam$" title=".* CD key"] floating enable
-for_window [class="^Steam$" title="^Steam - Self Updater$"] floating enable
-for_window [class="^Steam$" title="^Screenshot Uploader$"] floating enable
-for_window [class="^Steam$" title="^Steam Guard - Computer Authorization Required$"] floating enable
+# Make all Steam windows float
+# border normal helps trigger CEF rendering to avoid frozen UI
+for_window [class="^[Ss]team$"] floating enable, border normal
+for_window [class="^steam_app_"] floating enable
 for_window [title="^Steam Keyboard$"] floating enable
