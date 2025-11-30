@@ -1,11 +1,9 @@
-# .Xdefaults
-# by Marcin Rataj (http://lidel.org)
-# Updates: http://github.com/lidel/dotfiles/
-# License: public domain
-#
-# vim: ts=4 et sw=4
+! vim: ts=4 et sw=4
 
-Xcursor.theme:      Neutral_Plus
+!Xcursor.theme:      Neutral_Plus
+Xcursor.theme:      Vanilla-DMZ-AA
+Xcursor.size:       32
+
 ! xft
 Xft.dpi:            140
 Xft.antialias:      true
@@ -16,10 +14,10 @@ Xft.lcdfilter:      lcddefault
 Xft.rgba:           rgb
 xterm*utf8:             1
 
-## Color theme: gruvbox
+! Color theme: gruvbox
 XTerm*termName:     xterm-256color
 
-# https://github.com/morhetz/gruvbox-contrib/blob/master/xresources/gruvbox-dark.xresources
+! https://github.com/morhetz/gruvbox-contrib/blob/master/xresources/gruvbox-dark.xresources
 
 ! hard contrast: *background: #1d2021
 ! med contrast: *background:  #282828
