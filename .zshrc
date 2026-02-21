@@ -129,7 +129,6 @@ alias tlzma="tar -c $* | lzma -c9 > $1.tar.lzma" # deprecated?
 alias du_dir="find . -maxdepth 1 -type d | xargs du -sb | sort -n"
 alias png2jpg="mogrify -format jpg -quality 90 *.png"
 alias jpg2greyscale="mogrify -contrast -contrast dither -colors 256 -colorspace gray -normalize"
-alias r1600="mogrify -resize 1600x1280 -unsharp 1x1+0.3 -quality 90"
 alias lower="tr \"[:upper:]\" \"[:lower:]\""
 alias sping="ping -i .002 -s 1472"
 alias whatismyip="dig +short myip.opendns.com @resolver1.opendns.com"
@@ -137,6 +136,9 @@ alias whatismyip2="curl -s icanhazip.com"
 function calc () { awk "BEGIN { print $@ }" } # commandline calculator ;-)
 alias makecachetag="echo -n 'Signature: 8a477f597d28d172789f06886806bc55' > CACHEDIR.TAG"
 alias exif-fix-datetimeoriginal="exiftool '-exif:datetimeoriginal<filemodifydate' -if 'not \$exif:-exif:datetimeoriginal' -P"
+flop() {
+    ls "$@" | xargs -P $(nproc) -I {} magick {} -flop -verbose {}
+}
 
 # enterprise ambient sound
 alias engage-lo="play -n -c1 synth whitenoise band -n 100 20 band -n 50 20 gain +25  fade h 1 864000 1" # play from  http://sox.sourceforge.net
@@ -152,7 +154,7 @@ alias lsa='ls -F --color=auto --group-directories-first -ld .*' # list only file
 # 1 letter
 alias l=ls
 alias d='dirs -v'
-alias c="cd ~ ; clear"
+alias c="clear"
 #m () { xset s off ; ionice -c2 -n0 mplayer2 "$@" ; xset s on }
 alias m="ionice -c2 -n0 mpv"
 alias m.x1.25="ionice -c2 -n0 mpv -speed 1.25"
@@ -236,15 +238,29 @@ saydone () {
 }
 
 # http://ku1ik.com/2012/05/04/scratch-dir.html
-alias ns="new-scratch $HOME"
 function new-scratch {
-  cur_dir="$HOME/scratch"
-  new_dir="$1/tmp/scratch-`date +%F-%T`"
+  local base_path="$1"
+  local arg="$2"
+  local cur_dir="$HOME/scratch"
+  local timestamp=`date +%F-%H-%M-%S`
+
+  if [ -n "$arg" ]; then
+    # normalize arg: replace spaces with dashes
+    arg=$(echo "$arg" | tr ' ' '-')
+    new_dir="$base_path/tmp/scratch-${arg}-${timestamp}"
+  else
+    new_dir="$base_path/tmp/scratch-${timestamp}"
+  fi
+
   mkdir -p $new_dir
   ln -nfs $new_dir $cur_dir
   cd $cur_dir
   echo "New scratch dir ready ($new_dir)"
 }
+
+ns() { new-scratch "$HOME" "$1" }
+nst() { new-scratch "/tmp" "$1" }
+nspwd() { new-scratch "$(pwd)" "$1" }
 
 # vim as default editor (remote shells' crontab -e etc)
 export EDITOR=vim
@@ -328,11 +344,6 @@ function filter {
 
 ## COLOURS
 
-export GREP_COLOR=31
-if [ -x /usr/bin/dircolors ] ; then
-    eval `dircolors` # ls colors
-fi
-
 # GNU/Linux || BSD ls
 if [[ $OSTYPE = freebsd* ]]; then
     alias ls="ls -GF"
@@ -344,10 +355,27 @@ elif [[ $OSTYPE = linux* ]]; then
     alias la="ls -lhaF --color=auto --group-directories-first"
 fi
 
+# If present, use eza: a modern replacement for ls  https://the.eza.website/
+if [ "$(command -v eza)" ]; then
+    unalias -m 'll'
+    unalias -m 'l'
+    unalias -m 'la'
+    unalias -m 'ls'
+    alias l='ls'
+    alias ls='eza -G  --color auto -s type'
+    alias lt='eza -G  --color auto -s type --tree'
+    alias lt2='eza -G  --color auto -s type --tree --level=2'
+    alias lt3='eza -G  --color auto -s type --tree --level=3'
+    alias ll='eza -l --time-style=long-iso --color always -s type --git'
+    alias la='eza -l --time-style=long-iso --color always -s type --git -a'
+    alias llt='eza -l --time-style=long-iso --color always -s type --git --tree'
+    alias llt2='eza -l --time-style=long-iso --color always -s type --git --tree --level=2'
+    alias llt3='eza -l --time-style=long-iso --color always -s type --git --tree --level=3'
+fi
 
 # even more colour-candy  with app-misc/grc (http://goo.gl/2z2j)
-if [ "$TERM" != dumb ] && [ -x /usr/bin/grc ] ; then
-  alias cl='/usr/bin/grc -es --colour=auto'
+if [ "$TERM" != dumb ] && [ "$(command -v grc)" ]; then
+  alias cl='grc -es --colour=auto'
   alias configure='cl ./configure'
   alias diff='cl diff'
   alias gcc='cl gcc'
@@ -359,17 +387,26 @@ if [ "$TERM" != dumb ] && [ -x /usr/bin/grc ] ; then
   alias ping='cl ping'
 fi
 
-# MC chdir enhancement under Gentoo
-if [ -f /usr/share/mc/mc.gentoo ]; then
-       . /usr/share/mc/mc.gentoo
-fi
+# https://raw.githubusercontent.com/gruvbox-community/gruvbox/master/gruvbox_256palette.sh
+source "$HOME/.vim/bundle/gruvbox/gruvbox_256palette.sh"
 
-
+# TITLEBAR
+case $TERM in
+   xterm*|alacritty)
+        PR_TITLEBAR=$'%{\e]0;%(!.[ROOT] .)%n@%m:%~ \a%}'
+    ;;
+    rxvt*)
+        PR_TITLEBAR=$'%{\e]2;%(!.[ROOT] .)%n@%m:%~ \a%}'
+    ;;
+    screen)
+        PR_TITLEBAR=$'%{\e_screen \005 (\005t) | %(!.[ROOT] .)%n@%m:%~ \e\\%}'
+    ;;
+esac
 
 # HISTORY
 HISTFILE=${HOME}/.zsh_history
-HISTSIZE=5000
-SAVEHIST=5000
+HISTSIZE=100000
+SAVEHIST=100000
 setopt hist_ignore_dups         # Don't record an entry that was just recorded again.
 setopt hist_ignore_all_dups     # Delete old recorded entry if new entry is a duplicate.
 setopt hist_expire_dups_first   # Expire duplicate entries first when trimming history.
@@ -443,8 +480,6 @@ zstyle ':completion:*:functions' ignored-patterns '_*'
 
 
 ## MISC
-
-
 
 # local -- define private stuff there
 if [ -r ${HOME}/.zshrc_local ]; then

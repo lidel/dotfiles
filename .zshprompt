@@ -8,62 +8,43 @@
 setprompt () {
 
 setopt prompt_subst
+autoload -Uz vcs_info add-zsh-hook
 
-# Check if we can use colors
-autoload colors zsh/terminfo
-if [[ "$terminfo[colors]" -ge 8 ]]; then
-    colors
-fi
-
-
-# Indicate Git state:   MM?headname
+# Git status in prompt:   MM?branchname
 # staged changes    - green M
 # unstaged changes  - red   M
-# untracked changes - red   ?
-autoload -Uz vcs_info
+# untracked files   - red   ?
+zstyle ':vcs_info:*' enable git
 zstyle ':vcs_info:*' stagedstr 'M'
 zstyle ':vcs_info:*' unstagedstr 'M'
 zstyle ':vcs_info:*' check-for-changes true
-zstyle ':vcs_info:*' actionformats ' %F{3}@%b|%F{1}%a%f'
-zstyle ':vcs_info:*' formats       ' %F{2}%c%F{1}%u% %F{3}%b%f'
+zstyle ':vcs_info:*' actionformats ' %F{yellow}%b%f|%F{red}%a%f'
+zstyle ':vcs_info:*' formats       ' %F{green}%c%F{red}%u%F{yellow}%b%f'
 zstyle ':vcs_info:git*+set-message:*' hooks git-untracked
-zstyle ':vcs_info:*' enable git
 +vi-git-untracked() {
-    if [[ $(git rev-parse --is-inside-work-tree 2> /dev/null) == 'true' ]] && \
-        [[ $(git ls-files --other --directory --exclude-standard | sed q | wc -l | tr -d ' ') == 1 ]] ; then
-        hook_com[unstaged]+='%F{1}?%f'
+    if [[ $(git rev-parse --is-inside-work-tree 2>/dev/null) == 'true' ]]; then
+        if command git ls-files --others --exclude-standard \
+            --directory --no-empty-directory 2>/dev/null | read -r; then
+            hook_com[unstaged]+='%F{red}?%f'
+        fi
     fi
 }
-precmd () { vcs_info }
+add-zsh-hook precmd vcs_info
 
-# I want to see hostname only for remote sessions
+# Show hostname only for remote sessions
 if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
-	PR_HOST=$HOST
+    PR_HOST=$HOST
 else
   case $(ps -o comm= -p $PPID) in
     sshd|*/sshd) PR_HOST=$HOST;;
   esac
 fi
 
-# Decide if we need to set titlebar text.
-case $TERM in
-   xterm*)
-        PR_TITLEBAR=$'%{\e]0;%(!.[ROOT] .)%n@%m:%~ \a%}'
-    ;;
-    rxvt*)
-        PR_TITLEBAR=$'%{\e]2;%(!.[ROOT] .)%n@%m:%~ \a%}'
-    ;;
-    screen)
-        PR_TITLEBAR=$'%{\e_screen \005 (\005t) | %(!.[ROOT] .)%n@%m:%~ \e\\%}'
-    ;;
-    *)
-        PR_TITLEBAR=''
-    ;;
-esac
-
-PROMPT='${(e)PR_TITLEBAR}%(!.%s%{$fg_bold[red]%}root%f%b%s.)%{$fg_bold[black]%}$PR_HOST>%f%b '
-RPS1='%(?..%{$fg_bold[red]%}%?%f%b) %{$fg[cyan]%}%25<...<%~%f${vcs_info_msg_0_}'
-PS2='%_%{$fg[black]%}>%f '
+# Two-line prompt:
+#   line 1: [host:]path gitstatus
+#   line 2: [root][exitcode]$ or #
+PROMPT=$'$PR_TITLEBAR%B%F{cyan}${PR_HOST:+$PR_HOST:}%~%f%b${vcs_info_msg_0_}\n%(!.%B%F{red}root%f%b.)%(?..%F{cyan}[%F{red}%?%f%F{cyan}]%f)%F{cyan}%(!.#.$)%f '
+RPROMPT=''
+PS2='%_%F{cyan}>%f '
 
 }
-
