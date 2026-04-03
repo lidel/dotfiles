@@ -33,11 +33,7 @@ add-zsh-hook precmd vcs_info
 
 # Show hostname only for remote sessions
 if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
-    PR_HOST=$HOST
-else
-  case $(ps -o comm= -p $PPID) in
-    sshd|*/sshd) PR_HOST=$HOST;;
-  esac
+    PR_HOST="%n@$HOST"
 fi
 
 # Two-line prompt:
