@@ -130,21 +130,102 @@ ${endif}
     ${endif}
   },
   {
-    "full_text": "${acpitemp}℃",
+    "full_text": "⊞",
+    "color": "\#a89984"
+  },
+  {
+    "full_text": "R${diskio_read nvme0n1}",
+    "color": "\#a89984"
+  },
+  {
+    "full_text": "W${diskio_write nvme0n1}",
+    "color": "\#a89984"
+  },
+  {
+    "full_text": "GPU${hwmon 2 temp 1}℃",
     "color":
-      ${if_match ${acpitemp}>65}
+      ${if_match ${hwmon 2 temp 1}>65}
         "\#cc241d"
       ${else}
-        "\#a89984"
+        ${if_match ${hwmon 2 temp 1}>50}
+          "\#d79921"
+        ${else}
+          "\#a89984"
+        ${endif}
+      ${endif}
+  },
+  {
+    "full_text": "CPU${hwmon 0 temp 4}℃",
+    "color":
+      ${if_match ${hwmon 0 temp 4}>65}
+        "\#cc241d"
+      ${else}
+        ${if_match ${hwmon 0 temp 4}>50}
+          "\#d79921"
+        ${else}
+          "\#a89984"
+        ${endif}
+      ${endif}
+  },
+  {
+    "full_text": "MB1${hwmon 0 temp 1}℃",
+    "color":
+      ${if_match ${hwmon 0 temp 1}>65}
+        "\#cc241d"
+      ${else}
+        ${if_match ${hwmon 0 temp 1}>50}
+          "\#d79921"
+        ${else}
+          "\#a89984"
+        ${endif}
+      ${endif}
+  },
+  {
+    "full_text": "MB2${hwmon 0 temp 2}℃",
+    "color":
+      ${if_match ${hwmon 0 temp 2}>65}
+        "\#cc241d"
+      ${else}
+        ${if_match ${hwmon 0 temp 2}>50}
+          "\#d79921"
+        ${else}
+          "\#a89984"
+        ${endif}
+      ${endif}
+  },
+  {
+    "full_text": "MB3${hwmon 0 temp 3}℃",
+    "color":
+      ${if_match ${hwmon 0 temp 3}>65}
+        "\#cc241d"
+      ${else}
+        ${if_match ${hwmon 0 temp 3}>50}
+          "\#d79921"
+        ${else}
+          "\#a89984"
+        ${endif}
+      ${endif}
+  },
+  {
+    "full_text": "SSD${hwmon 1 temp 1}℃",
+    "color":
+      ${if_match ${hwmon 1 temp 1}>65}
+        "\#cc241d"
+      ${else}
+        ${if_match ${hwmon 1 temp 1}>50}
+          "\#d79921"
+        ${else}
+          "\#a89984"
+        ${endif}
       ${endif}
   },
   {
     "full_text": "${loadavg 1}",
     "color":
-    ${if_match ${loadavg 1}>8}
+    ${if_match ${loadavg 1}>32}
         "\#cc241d"
     ${else}
-        ${if_match ${loadavg 1}>4}
+        ${if_match ${loadavg 1}>16}
             "\#d79921"
         ${else}
             "\#a89984"
