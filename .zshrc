@@ -131,8 +131,13 @@ alias png2jpg="mogrify -format jpg -quality 90 *.png"
 alias jpg2greyscale="mogrify -contrast -contrast dither -colors 256 -colorspace gray -normalize"
 alias lower="tr \"[:upper:]\" \"[:lower:]\""
 alias sping="ping -i .002 -s 1472"
-alias whatismyip="dig +short myip.opendns.com @resolver1.opendns.com"
-alias whatismyip2="curl -s icanhazip.com"
+whatismyip() {
+    printf "%-11s %s\n" \
+        "AWS"        "$(curl -s checkip.amazonaws.com)" \
+        "Cloudflare" "$(dig +short CH TXT whoami.cloudflare @1.1.1.1 | tr -d '\"')" \
+        "Google"     "$(dig +short TXT o-o.myaddr.l.google.com @ns1.google.com | tr -d '\"')" \
+        "OpenDNS"    "$(dig +short myip.opendns.com @resolver2.opendns.com)"
+}
 function calc () { awk "BEGIN { print $@ }" } # commandline calculator ;-)
 alias makecachetag="echo -n 'Signature: 8a477f597d28d172789f06886806bc55' > CACHEDIR.TAG"
 alias exif-fix-datetimeoriginal="exiftool '-exif:datetimeoriginal<filemodifydate' -if 'not \$exif:-exif:datetimeoriginal' -P"
