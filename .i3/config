@@ -25,6 +25,10 @@ font pango:Envy Code R 10
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
+# Only rearrange tiled windows when $mod is held; prevents accidental
+# drag-and-drop when grabbing a titlebar with the mouse
+tiling_drag modifier
+
 # start a terminal
 bindsym $mod+Return exec alacritty
 bindsym $mod+grave  exec alacritty
