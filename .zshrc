@@ -245,27 +245,28 @@ saydone () {
 # http://ku1ik.com/2012/05/04/scratch-dir.html
 function new-scratch {
   local base_path="$1"
-  local arg="$2"
+  shift
   local cur_dir="$HOME/scratch"
   local timestamp=`date +%F-%H-%M-%S`
 
-  if [ -n "$arg" ]; then
-    # normalize arg: replace spaces with dashes
-    arg=$(echo "$arg" | tr ' ' '-')
-    new_dir="$base_path/tmp/scratch-${arg}-${timestamp}"
+  if [ "$#" -gt 0 ]; then
+    # join all words with underscores
+    local arg="${(j:_:)@}"
+    arg="${arg// /_}"
+    new_dir="$base_path/tmp/scratch/${timestamp}__${arg}"
   else
-    new_dir="$base_path/tmp/scratch-${timestamp}"
+    new_dir="$base_path/tmp/scratch/${timestamp}"
   fi
 
   mkdir -p $new_dir
   ln -nfs $new_dir $cur_dir
-  cd $cur_dir
+  cd $new_dir
   echo "New scratch dir ready ($new_dir)"
 }
 
-ns() { new-scratch "$HOME" "$1" }
-nst() { new-scratch "/tmp" "$1" }
-nspwd() { new-scratch "$(pwd)" "$1" }
+ns() { new-scratch "$HOME" "$@" }
+nst() { new-scratch "/tmp" "$@" }
+nspwd() { new-scratch "$(pwd)" "$@" }
 
 # vim as default editor (remote shells' crontab -e etc)
 export EDITOR=vim
